@@ -3,23 +3,97 @@
   <head>
     <title>April</title>
 
-    {% assets filters="cssmin", output="gen/style.css", "css/base.css" %}
+    {% assets filters="cssmin", output="gen/style.css", "css/reset.css", "css/base.css" %}
       <link rel="stylesheet" href="{{ ASSET_URL }}">
     {% endassets %}
 
   </head>
   <body>
-   
-    <header>
-      <div class="container">
-        <h1 class="logo">Hello April</h1>
-      </div>
-    </header> 
      
     <div class="container">
+
+      <div class="loading-screen" style="background-color: #000; width: 100%; height: 100%; position: absolute; z-index: 2;">
+
+      </div>
+
+      <h1>April</h1>
+      
+      <video audio="muted" autoplay loop>
+        <!--<source src="//dns4jlfurg7hp.cloudfront.net/videos/petra.ogv" type="video/ogg; codecs=&quot;theora, vorbis&quot;">-->
+        <source src="//jeffmicklos.s3.amazonaws.com/april/web/bg_ipod.mp4" type="video/mp4; codecs=&quot;avc1.42E01E, mp4a.40.2&quot;">
+      </video>
+
       {% block content %}
       {% endblock %}
     </div>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/zepto/1.0/zepto.min.js"></script>
+
+    <script>
+
+      var WINDOW = $(window);
+      var VIDEO = $('video');
+
+      // Fades out the initial black screen
+      var hideLoadingScreen = function() {
+        $('.loading-screen').animate({
+          opacity: 0
+        }, 1000);
+      };
+
+      
+      // Once the video is ready to play, fade out the loading screen
+      if(VIDEO.get(0).buffered.length) {
+        hideLoadingScreen()
+      } else {
+        VIDEO.on('canplay', hideLoadingScreen);
+      }
+
+
+      // Set the height of the containing div so we don't overflow
+      $('.container').css('height', $(window).height());
+
+
+      // Always fit the video to the viewport
+      WINDOW.on('resize', fitVideo);
+
+
+      var verticalCenter = function(element) {
+        element.css({
+          position: 'absolute',
+          top: '50%',
+          marginTop: -(element.height() / 2)
+        });
+      };
+
+      var fitVideo = function() {
+        var videoW = 960;
+        var videoH = 544;
+        var windowW = $(window).width();
+        var windowH = $(window).height();
+
+        var videoRatio = videoW / videoH;
+        var windowRatio = windowW / windowH;
+
+        if(windowRatio < videoRatio) {
+          VIDEO.css({
+            height: '100%',
+            width: 'auto',
+            left: 'auto',
+            marginLeft: 0
+          });
+        } else {
+          VIDEO.css({
+            height: 'auto',
+            width: '100%',
+          });
+        }
+      };
+
+      
+      verticalCenter($('h1'));
+
+    </script>
      
   </body>
 </html>
