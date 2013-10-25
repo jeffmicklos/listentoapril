@@ -31,69 +31,72 @@
 
     <script>
 
-      var WINDOW = $(window);
-      var VIDEO = $('video');
+      April = {
 
-      // Fades out the initial black screen
-      var hideLoadingScreen = function() {
-        $('.loading-screen').animate({
-          opacity: 0
-        }, 1000);
-      };
+        init: function() {
 
-      
-      // Once the video is ready to play, fade out the loading screen
-      if(VIDEO.get(0).buffered.length) {
-        hideLoadingScreen()
-      } else {
-        VIDEO.on('canplay', hideLoadingScreen);
-      }
+          this.w = $(window);
+          this.video = $('video');
+          this.container = $('.container');
+          this.loadingScreen = $('.loading-screen');
 
+          this.arrangeElements();
+          this.w.on('resize', $.proxy(this.arrangeElements, this));
 
-      // Set the height of the containing div so we don't overflow
-      $('.container').css('height', $(window).height());
+          // Once the video is ready to play, fade out the loading screen
+          if(this.video.get(0).buffered.length) {
+            this.hideLoadingScreen()
+          } else {
+            this.video.on('canplay', $.proxy(this.hideLoadingScreen, this));
+          }
 
-      var verticalCenter = function(element) {
-        element.css({
-          position: 'absolute',
-          top: '50%',
-          marginTop: -(element.height() / 2)
-        });
-      };
+        },
 
-      var fitVideo = function() {
-        var videoW = 960;
-        var videoH = 544;
-        var windowW = WINDOW.width();
-        var windowH = WINDOW.height();
+        arrangeElements: function() {
+          this.fitVideo();
+          this.verticalCenter($('h1'));
+          this.container.css('height', this.w.height());
+        },
 
-        var videoRatio = videoW / videoH;
-        var windowRatio = windowW / windowH;
+        hideLoadingScreen: function() {
+          this.loadingScreen.animate({
+            opacity: 0
+          }, 1000);
+        },
 
-        if(windowRatio < videoRatio) {
-          VIDEO.css({
-            height: '100%',
-            width: 'auto',
-            left: 'auto',
-            marginLeft: 0
-          });
-        } else {
-          VIDEO.css({
-            height: 'auto',
-            width: '100%',
+        fitVideo: function() {
+          var videoW = 960;
+          var videoH = 544;
+          var windowW = this.w.width();
+          var windowH = this.w.height();
+
+          var videoRatio = videoW / videoH;
+          var windowRatio = windowW / windowH;
+
+          if(windowRatio < videoRatio) {
+            this.video.css({
+              height: '100%',
+              width: 'auto'
+            });
+          } else {
+            this.video.css({
+              height: 'auto',
+              width: '100%',
+            });
+          }
+        },
+
+        verticalCenter: function(element) {
+          element.css({
+            position: 'absolute',
+            top: '50%',
+            marginTop: -(element.height() / 2)
           });
         }
+
       };
 
-      // Always fit the video to the viewport
-      WINDOW.on('resize', function() {
-        fitVideo();
-        $('.container').css('height', $(window).height());
-      });
-
-      fitVideo();
-      
-      verticalCenter($('h1'));
+      April.init();
 
     </script>
      
