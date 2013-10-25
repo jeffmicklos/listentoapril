@@ -53,11 +53,6 @@
       // Set the height of the containing div so we don't overflow
       $('.container').css('height', $(window).height());
 
-
-      // Always fit the video to the viewport
-      WINDOW.on('resize', fitVideo);
-
-
       var verticalCenter = function(element) {
         element.css({
           position: 'absolute',
@@ -69,8 +64,8 @@
       var fitVideo = function() {
         var videoW = 960;
         var videoH = 544;
-        var windowW = $(window).width();
-        var windowH = $(window).height();
+        var windowW = WINDOW.width();
+        var windowH = WINDOW.height();
 
         var videoRatio = videoW / videoH;
         var windowRatio = windowW / windowH;
@@ -90,6 +85,13 @@
         }
       };
 
+      // Always fit the video to the viewport
+      WINDOW.on('resize', function() {
+        fitVideo();
+        $('.container').css('height', $(window).height());
+      });
+
+      fitVideo();
       
       verticalCenter($('h1'));
 
