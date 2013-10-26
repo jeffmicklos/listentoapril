@@ -1,29 +1,50 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: Baskerville, 'Baskerville Old Face', 'Hoefler Text', Garamond, 'Times New Roman', serif;
   color: #444;
   background-color: #000;
   -webkit-font-smoothing: antialiased;
 }
 
 .container {
-	overflow: hidden;
+  overflow: hidden;
+}
+
+.content {
+  z-index: 1;
+  position: absolute;
+  width: 640px;
+  margin: 0 auto;
+  text-align: center;
 }
 
 h1 {
-	color: #f1f1f1;
-	font-family: Baskerville, 'Baskerville Old Face', 'Hoefler Text', Garamond, 'Times New Roman', serif;
-	font-size: 40px;
-	text-align: center;
-	width: 100%;
-	z-index: 1;
-	letter-spacing: 1px;
+  color: #f1f1f1;
+  font-size: 40px;
+  text-align: center;
+  width: 100%;
+  letter-spacing: 1px;
+  margin-bottom: 30px;
 }
 
 video {
-	height: auto;
-	width: 100%;
-	position: relative;
-	-webkit-filter: saturate(0%) blur(10px) brightness(50%);
+  height: auto;
+  z-index: 0;
+  width: 100%;
+  position: relative;
+  -webkit-filter: saturate(0%) blur(10px) brightness(50%);
+}
+
+iframe {
+  margin-bottom: 15px;
+}
+
+.download-link {
+  color: #f1f1f1;
+  font-family: Baskervile;
+  text-decoration: none;
+  display: inline-block;
+  border-bottom: 1px solid #f1f1f1;
+}
 }

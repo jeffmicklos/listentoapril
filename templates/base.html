@@ -16,7 +16,12 @@
 
       </div>
 
-      <h1>April</h1>
+      <div class="content">
+        <h1>April</h1>
+        <iframe width="640" height="65" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/93015099&amp;color=333031&amp;auto_play=false&amp;show_artwork=false&amp;show_playcount=false&amp;theme_color=f1f1f1"></iframe>
+
+        <a href="#" class="download-link">Download mp3 for Free</a>
+      </div>
       
       <video audio="muted" autoplay loop>
         <!--<source src="//dns4jlfurg7hp.cloudfront.net/videos/petra.ogv" type="video/ogg; codecs=&quot;theora, vorbis&quot;">-->
@@ -31,6 +36,15 @@
 
     <script>
 
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-45175550-1', 'listentoapril.com');
+      ga('send', 'pageview');
+
+
       April = {
 
         init: function() {
@@ -42,10 +56,11 @@
 
           this.arrangeElements();
           this.w.on('resize', $.proxy(this.arrangeElements, this));
+          $('.download-link').on('click', $.proxy(this.onDownload, this));
 
           // Once the video is ready to play, fade out the loading screen
           if(this.video.get(0).buffered.length) {
-            this.hideLoadingScreen()
+            this.hideLoadingScreen();
           } else {
             this.video.on('canplay', $.proxy(this.hideLoadingScreen, this));
           }
@@ -54,14 +69,24 @@
 
         arrangeElements: function() {
           this.fitVideo();
-          this.verticalCenter($('h1'));
+          this.verticalCenter($('.content'));
+          this.horizontalCenter($('.content'));
           this.container.css('height', this.w.height());
         },
 
         hideLoadingScreen: function() {
+          var self = this;
           this.loadingScreen.animate({
             opacity: 0
-          }, 1000);
+          }, 1000, 'ease', function() {
+            self.loadingScreen.remove();
+          });
+        },
+
+        onDownload: function() {
+          ga('send', 'event', 'Music', 'Download', 'I Know You Are But What Am I');
+          //ga('trackEvent', 'Videos', 'Play', 'Gone With the Wind');
+          //_gaq.push(['_trackEvent', 'Music', 'Download', 'I Know You Are But What Am I']);
         },
 
         fitVideo: function() {
@@ -87,10 +112,20 @@
         },
 
         verticalCenter: function(element) {
+          var position = element.css('position') == 'relative' ? 'relative' : null;
           element.css({
-            position: 'absolute',
+            position: position || 'absolute',
             top: '50%',
             marginTop: -(element.height() / 2)
+          });
+        },
+
+        horizontalCenter: function(element) {
+          var position = element.css('position') == 'relative' ? 'relative' : null;
+          element.css({
+            position:  position || 'absolute',
+            left: '50%',
+            marginLeft: -(element.width() / 2)
           });
         }
 
