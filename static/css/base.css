@@ -2,7 +2,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: Baskerville, 'Baskerville Old Face', 'Hoefler Text', Garamond, 'Times New Roman', serif;
-  color: #444;
+  color: #f1f1f1;
   background-color: #000;
   -webkit-font-smoothing: antialiased;
 }
@@ -20,7 +20,6 @@ body {
 }
 
 h1 {
-  color: #f1f1f1;
   font-size: 40px;
   text-align: center;
   width: 100%;
@@ -36,15 +35,23 @@ video {
   -webkit-filter: saturate(0%) blur(10px) brightness(50%);
 }
 
+span {
+  text-transform: uppercase;
+  font-size: 13px;
+  margin-bottom: 30px;
+  letter-spacing: 1px;
+  display: block;
+}
+
 iframe {
-  margin-bottom: 15px;
+  margin-bottom: 30px;
 }
 
 .download-link {
-  color: #f1f1f1;
+  color: inherit;
   font-family: Baskervile;
   text-decoration: none;
   display: inline-block;
-  border-bottom: 1px solid #f1f1f1;
+  border-bottom: 1px solid;
 }
 }

@@ -3,6 +3,13 @@
   <head>
     <title>April</title>
 
+    <meta name="description" content="an Ambient/Post-Rock band from San Francisco. Free music and hugs inside.">
+
+    <meta property="og:title" content="April" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://www.listentoapril.com" />
+    <meta property="og:image" content="http://jeffmicklos.s3.amazonaws.com/april/web/april.jpg" />
+
     {% assets filters="cssmin", output="gen/style.css", "css/reset.css", "css/base.css" %}
       <link rel="stylesheet" href="{{ ASSET_URL }}">
     {% endassets %}
@@ -16,11 +23,21 @@
 
       </div>
 
-      <div class="content">
-        <h1>April</h1>
-        <iframe width="640" height="65" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/93015099&amp;color=333031&amp;auto_play=false&amp;show_artwork=false&amp;show_playcount=false&amp;theme_color=f1f1f1"></iframe>
 
-        <a href="#" class="download-link">Download mp3 for Free</a>
+      <div class="content" itemscope itemtype="http://schema.org/MusicGroup">
+
+        <h1 itemprop="name">April</h1>
+
+        <div itemprop="track" itemscope itemtype="http://schema.org/MusicRecording">
+          <meta itemprop="duration" content="PT4M37S" />
+          <span itemprop="name">I Know You Are But What Am I?</span>
+
+          <iframe width="640" height="65" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/117261269&amp;color=333031&amp;auto_play=false&amp;show_artwork=false&amp;show_playcount=false&amp;theme_color=f1f1f1">
+          </iframe>
+
+          <a itemprop="audio" href="http://jeffmicklos.s3.amazonaws.com/april/April%20-%20I%20Know%20You%20Are%20But%20What%20Am%20I.mp3" class="download-link" title="Free Download of I Know You Are But What Am I">Download mp3 for Free</a>
+        </div>
+
       </div>
       
       <video audio="muted" autoplay loop>
@@ -85,8 +102,6 @@
 
         onDownload: function() {
           ga('send', 'event', 'Music', 'Download', 'I Know You Are But What Am I');
-          //ga('trackEvent', 'Videos', 'Play', 'Gone With the Wind');
-          //_gaq.push(['_trackEvent', 'Music', 'Download', 'I Know You Are But What Am I']);
         },
 
         fitVideo: function() {
