@@ -16,13 +16,21 @@
 
   </head>
   <body>
+
+    <div class="footer">
+      <ul>
+        <li>
+          <a href="https://soundcloud.com/listentoapril" rel="me" title="Listen to April the band on SoundCloud">SoundCloud</a>
+        </li>
+        <li>
+          <a href="http://instagram.com/listentoapril" rel="me" title="April the band on Instagram">Instagram</a>
+        </li>
+      </ul>
+    </div>
      
     <div class="container">
 
-      <div class="loading-screen" style="background-color: #000; width: 100%; height: 100%; position: absolute; z-index: 2;">
-
-      </div>
-
+      <div class="loading-screen"></div>
 
       <div class="content" itemscope itemtype="http://schema.org/MusicGroup">
 
@@ -51,7 +59,10 @@
 
       {% block content %}
       {% endblock %}
+
     </div>
+
+    
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/zepto/1.0/zepto.min.js"></script>
 
@@ -72,7 +83,9 @@
 
           this.w = $(window);
           this.video = $('video');
+          this.footer = $('.footer');
           this.container = $('.container');
+          this.contentContainer = $('.content');
           this.loadingScreen = $('.loading-screen');
 
           this.arrangeElements();
@@ -90,9 +103,10 @@
 
         arrangeElements: function() {
           this.fitVideo();
-          this.verticalCenter($('.content'));
-          this.horizontalCenter($('.content'));
+          this.verticalCenter(this.contentContainer);
+          this.horizontalCenter(this.contentContainer);
           this.container.css('height', this.w.height());
+          this.footer.css('top', this.w.height());
         },
 
         hideLoadingScreen: function() {

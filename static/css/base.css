@@ -7,6 +7,14 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+.loading-screen {
+  background-color: #000;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 2;
+}
+
 .container {
   overflow: hidden;
 }
@@ -17,6 +25,32 @@ body {
   width: 640px;
   margin: 0 auto;
   text-align: center;
+}
+
+.footer {
+  background-color: #000;
+  height: 80px;
+  position: absolute;
+  z-index: 10;
+  width: 100%;
+}
+
+.footer ul {
+  width: 640px;
+  margin: 0 auto;
+  text-align: center;
+  padding-top: 34px;
+}
+
+.footer li {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.footer a {
+  text-decoration: none;
+  border-bottom: 1px solid;
+  color: #A2A2A2;
 }
 
 h1 {
@@ -53,5 +87,4 @@ iframe {
   text-decoration: none;
   display: inline-block;
   border-bottom: 1px solid;
-}
 }
