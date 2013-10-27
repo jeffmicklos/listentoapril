@@ -5,6 +5,10 @@
 
     <meta name="description" content="an Ambient/Post-Rock band from San Francisco. Free music and hugs inside.">
 
+    {% if g.is_mobile %}
+      <meta name="viewport" content="width=device-width, user-scalable=false;">
+    {% endif %}
+
     <meta property="og:title" content="April" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="http://www.listentoapril.com" />
@@ -15,7 +19,7 @@
     {% endassets %}
 
   </head>
-  <body>
+  <body class="{% if g.is_mobile %}mobile{% endif %}">
 
     <div class="footer">
       <ul>
@@ -52,10 +56,12 @@
 
       </div>
       
-      <video audio="muted" autoplay loop>
-        <!--<source src="//dns4jlfurg7hp.cloudfront.net/videos/petra.ogv" type="video/ogg; codecs=&quot;theora, vorbis&quot;">-->
-        <source src="//jeffmicklos.s3.amazonaws.com/april/web/bg_ipod.mp4" type="video/mp4; codecs=&quot;avc1.42E01E, mp4a.40.2&quot;">
-      </video>
+      {% if not g.is_mobile %}
+        <video audio="muted" autoplay loop>
+          <!--<source src="//dns4jlfurg7hp.cloudfront.net/videos/petra.ogv" type="video/ogg; codecs=&quot;theora, vorbis&quot;">-->
+          <source src="//jeffmicklos.s3.amazonaws.com/april/web/bg_ipod.mp4" type="video/mp4; codecs=&quot;avc1.42E01E, mp4a.40.2&quot;">
+        </video>
+      {% endif %}
 
       {% block content %}
       {% endblock %}
@@ -76,6 +82,7 @@
       ga('create', 'UA-45175550-1', 'listentoapril.com');
       ga('send', 'pageview');
 
+      IS_MOBILE = {{g.is_mobile|tojson|safe}};
 
       April = {
 
@@ -93,7 +100,9 @@
           $('.download-link').on('click', $.proxy(this.onDownload, this));
 
           // Once the video is ready to play, fade out the loading screen
-          if(this.video.get(0).buffered.length) {
+          if(!this.video.get(0)) {
+            this.hideLoadingScreen();
+          } else if(this.video.get(0).buffered.length) {
             this.hideLoadingScreen();
           } else {
             this.video.on('canplay', $.proxy(this.hideLoadingScreen, this));
@@ -103,8 +112,10 @@
 
         arrangeElements: function() {
           this.fitVideo();
+          //if(!IS_MOBILE) {
           this.verticalCenter(this.contentContainer);
           this.horizontalCenter(this.contentContainer);
+          //}
           this.container.css('height', this.w.height());
           this.footer.css('top', this.w.height());
         },
