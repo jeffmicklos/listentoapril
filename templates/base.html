@@ -23,10 +23,12 @@
 
     <div class="footer">
 
-      <form class="email">
-        <input type="email" class="email-value" placeholder="Email Address">
-        <input type="submit" class="email-submit" value="Stay Up To Date">
-      </form>
+      {% if not g.is_mobile %}
+        <form class="email">
+          <input type="email" class="email-value" placeholder="Email Address">
+          <input type="submit" class="email-submit" value="Stay Up To Date">
+        </form>
+      {% endif %}
 
       <ul>
         <li>

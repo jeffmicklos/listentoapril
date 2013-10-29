@@ -95,13 +95,15 @@ April = {
     
     this.store = new Firebase('https://april.firebaseio.com/');
 
-    this.w.on('load', function() {
-      setTimeout(function() {
-        self.footer.animate({
-          top: self.w.height() - self.footer.find('form').height()
-        }, 400, 'ease-in');
-      }, 2000);
-    });
+    if(!IS_MOBILE) {
+      this.w.on('load', function() {
+        setTimeout(function() {
+          self.footer.animate({
+            top: self.w.height() - self.footer.find('form').height()
+          }, 400, 'ease-in');
+        }, 2000);
+      });
+    }
 
   },
 
