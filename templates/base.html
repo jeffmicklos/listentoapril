@@ -66,9 +66,27 @@
       
       {% if not g.is_mobile %}
         <video audio="muted" autoplay loop>
-          <!--<source src="//dns4jlfurg7hp.cloudfront.net/videos/petra.ogv" type="video/ogg; codecs=&quot;theora, vorbis&quot;">-->
+          <source src="//jeffmicklos.s3.amazonaws.com/april/web/bg_ipod.ogv" type="video/ogg; codecs=&quot;theora, vorbis&quot;">
           <source src="//jeffmicklos.s3.amazonaws.com/april/web/bg_ipod.mp4" type="video/mp4; codecs=&quot;avc1.42E01E, mp4a.40.2&quot;">
         </video>
+
+        <svg id="image" version="1.1" xmlns="http://www.w3.org/2000/svg">
+          <defs>  
+
+            <filter id="displacement" x="0%" y="0%" height="100%" width="100%">
+              <feGaussianBlur stdDeviation="10" />
+              <feComponentTransfer>
+                <feFuncG tableValues="0 .5 1" type="discrete" />
+                <feFuncB tableValues="0" type="discrete" />
+              </feComponentTransfer>
+              <feColorMatrix values="0.3333 0.3333 0.3333 0 0
+                                   0.3333 0.3333 0.3333 0 0
+                                  0.3333 0.3333 0.3333 0 0
+                                  0      0      0      1 0"/>
+            </filter>
+
+          </defs>
+        </svg>
       {% endif %}
 
       {% block content %}

@@ -75,7 +75,10 @@ video {
   z-index: 0;
   width: 100%;
   position: relative;
+  /* webkit blurring and black & white */
   -webkit-filter: saturate(0%) blur(10px) brightness(50%);
+  /* firefox blurring and black & white */
+  filter:url(#displacement);
 }
 
 span {

@@ -9,6 +9,8 @@ April = {
     this.contentContainer = $('.content');
     this.loadingScreen = $('.loading-screen');
 
+    this.video.css('filter', 'url(#displacement)');
+
     // A Firebase object will eventually fill this variable
     this.store = null;
 
