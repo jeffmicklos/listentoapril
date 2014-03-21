@@ -5,9 +5,6 @@ from flask import Flask, render_template, request, g, json
 from flask.ext.assets import Environment, Bundle
 from  werkzeug.debug import get_current_traceback
 
-import newrelic.agent
-newrelic.agent.initialize('newrelic.ini')
-
 app = Flask(__name__, static_folder='static', static_url_path='')
 app.config['DEBUG'] = True
 assets = Environment(app)
