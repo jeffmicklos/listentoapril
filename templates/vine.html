@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Vine</title>
+    {% assets filters="cssmin", output="gen/vine.css", "css/reset.css" %}
+      <link rel="stylesheet" href="{{ ASSET_URL }}">
+    {% endassets %}
+
+    <style>
+      body {
+        overflow: hidden;
+        background-color: #121212;
+      }
+
+      video {
+        position: absolute;
+      }
+
+      .filtered {
+        -webkit-filter: saturate(12%) blur(15px) brightness(50%);
+      }
+
+    </style>
+
+  </head>
+  <body>
+
+    <div class="container">
+
+      <video id="video" src="" width="480" height="480" autoplay=""></video>
+
+    </div>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/zepto/1.0/zepto.min.js"></script>
+
+   	<script src="/static/js/vine_data.js"></script>
+
+    <script>
+
+      var video = $('#video');
+
+      var fitVideo = function() {
+
+        var w = $(window);
+        var windowW = w.width();
+        var windowH = w.height();
+
+        if(windowW < windowH) {
+          video.css({
+            height: windowH,
+            width: 'auto',
+            marginTop: 0,
+            top: 0,
+            left: '50%',
+            marginLeft: -(video.width() / 2),
+          });
+        } else {
+          video.css({
+            height: 'auto',
+            width: '100%',
+            marginTop: -(video.height() / 2),
+            top: '50%',
+            left: 0,
+            marginLeft: 0
+          });
+        }
+
+      };
+
+      $(window).on('load', fitVideo);
+      $(window).on('resize', fitVideo);
+      fitVideo();
+
+		  var data = [];
+      for(var i = 0; i < VINE_DATA.length; i++) {
+        data.push(JSON.parse(VINE_DATA[i]));
+      }
+
+      var count = 0;
+
+      video.on('ended', function() {
+        video.attr('src', data[count++].video);
+      });
+
+      video.attr('src', data[0].video);
+
+    </script>
+     
+  </body>
+</html>

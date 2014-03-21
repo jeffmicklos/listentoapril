@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <title>50 Shades of Grey</title>
+
+    <link rel="stylesheet" href="wanelo/everlane.css">
+
+    <style>
+
+      body {
+        font-family: Georgia;
+      }
+
+      h2 {
+        font-family: Georgia;
+        font-weight: normal;
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+
+      li p {
+        font-size: 16px;
+        opacity: 0.5;
+      }
+
+      ul {
+        list-style-type: none;
+        margin: 0;
+      }
+
+      li {
+        float:left;
+        width: 20%;
+        max-width: 50%;
+        min-width: 10%;
+        overflow: hidden;
+        cursor: pointer;
+        position: relative;
+      }
+
+      li:hover .container {
+        opacity: 1;
+      }
+
+      .container {
+        width: 100%;
+        position: relative;
+        text-align: center;
+        top: 50%;
+        opacity: 0;
+        -webkit-transition: opacity 0.5s;
+      }
+
+      .container.visible {
+        opacity: 1;
+      }
+
+
+      .details {
+        width: 100%;
+        position: absolute;
+        color: #060606;
+        display: none;
+        font-family: monaco;
+        font-size: 13px;
+        line-height: 28px;
+        overflow: scroll;
+        box-sixing: border-box;
+      }
+
+      .details p {
+        padding-top: 20px;
+        padding-left: 20px;
+        color: inherit;
+      }
+    </style>
+
+
+  </head>
+
+  <body>
+
+    <ul class="swatches"></ul>
+
+    <div class="details">
+    </div>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    <script>
+
+      $(function() {
+
+        var resizeSquares = function() {
+          $('li').css('height', $('li').css('width'));
+          var container = $('li').find('.container');
+          container.css({
+            marginTop: -(container.outerHeight() / 2)
+          });
+        };
+
+        $(document.body).on('keyup', function(event) {
+          if(event.keyCode === 70) {
+            SORT_ASC = !SORT_ASC;
+
+            if(window.activeSwatchRow) {
+              window.activeSwatchRow.animate({
+                paddingBottom: 0
+              }, function() {
+                sortByFreq(SORT_ASC);
+              });
+              $('.details').hide();
+            } else {
+              sortByFreq(SORT_ASC);
+            }
+            
+          } else if(event.keyCode === 67) {
+            COLOR_ASC = !COLOR_ASC;
+
+            if(window.activeSwatchRow) {
+              window.activeSwatchRow.animate({
+                paddingBottom: 0
+              }, function() {
+                sortByColor(COLOR_ASC);
+              });
+              $('.details').hide();
+            } else {
+              sortByColor(COLOR_ASC);
+            }
+          } else if(event.keyCode === 85) {
+            $('.container').toggleClass('visible')
+          }
+        });
+
+        $('.swatches').delegate('li', 'click', function(event) {
+
+            var slideInDetails = function() {
+              var element = $(event.currentTarget);
+              var parent = element.parent();
+              var selectors = map[element.data('key')];
+
+              if(parent.is(window.activeSwatchRow) && !element.is(window.activeSwatch)) {
+                window.activeSwatchRow = null;
+                window.activeSwatch = null;
+                //return;
+              } else if(parent.is(window.activeSwatchRow) && element.is(window.activeSwatch)) {
+                window.activeSwatchRow = null;
+                window.activeSwatch = null;
+                return;
+              }
+
+              parent.css('background-color', element.css('background-color'));
+
+              $('.details').html(
+                '<p style="width: 600px;">' + selectors.join('<br>') + '</p>'
+              );
+
+              $('.details').css({
+                top: element.offset().top + element.outerHeight(),
+                backgroundColor: element.css('background-color'),
+                color: element.css('color'),
+                height: 150,
+              })
+
+              parent.animate({
+                paddingBottom: 150
+              }, function() {
+                $('.details').fadeIn(150)
+              });
+
+              window.activeSwatchRow = parent;
+              window.activeSwatch = element;
+          };
+
+          if(window.activeSwatchRow) {
+            window.activeSwatchRow.animate({
+              paddingBottom: 0
+            }, slideInDetails);
+            $('.details').hide();
+          } else {
+            slideInDetails();
+          }        
+
+        });
+
+        window.RAW_CSS;
+        window.USED_COLORS = [];
+        window.COLOR_FREQ = {};
+        window.SORTED_COLORS = [];
+        window.SORT_ASC = false;
+        window.COLOR_ASC = false;
+        window.activeSwatchRow = null;
+        window.activeSwatch = null;
+
+        var hexToRgb = function(hex) {
+          // Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
+          var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+          hex = hex.replace(shorthandRegex, function(m, r, g, b) {
+              return r + r + g + g + b + b;
+          });
+
+          var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+          return result ? {
+              r: parseInt(result[1], 16),
+              g: parseInt(result[2], 16),
+              b: parseInt(result[3], 16)
+          } : null;
+        };
+
+        var componentToHex = function(c) {
+            var hex = c.toString(16);
+            return hex.length == 1 ? '0' + hex : hex;
+        }
+
+        var rgbToHex = function(r, g, b) {
+            return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+        }
+
+        var sortByFreq = function(asc) {
+
+          if(typeof asc == undefined) {
+            asc = true;
+          }
+
+          var html = '';
+
+          if(!SORTED_COLORS.length) {
+            for(var freq in COLOR_FREQ) {
+              SORTED_COLORS.push([freq, COLOR_FREQ[freq]]);
+            }
+          }
+
+          SORTED_COLORS.sort(function(a, b) {
+            if(asc) {
+              return b[1] - a[1];
+            } else {
+              return a[1] - b[1];
+            }
+          });
+          for(var i = 0; i < SORTED_COLORS.length; i++) {
+            html += boxTemplate(SORTED_COLORS[i][0], map[SORTED_COLORS[i][0]]);
+          }
+
+          $('.swatches').html(html);
+
+          $('.swatches').find('li').each(function(i) {
+            if( i % 5 == 0 ) {
+              $(this).nextAll().andSelf().slice(0,5).wrapAll('<ul class="clearfix"></ul>');
+            }
+          });
+
+          resizeSquares();
+        };
+
+
+        var sortByColor = function(asc) {
+
+          if(typeof asc == undefined) {
+            asc = true;
+          }
+
+          var html = '';
+
+          if(asc) {
+            for(var key in map) {
+              html += boxTemplate(key, map[key]);
+            }
+          } else {
+            var keys = Object.keys(map);
+            var length = keys.length;
+            while(length--) {
+              html += boxTemplate(keys[length], map[keys[length]]);
+            }
+          }
+
+          $('.swatches').html(html);
+
+          $('.swatches').find('li').each(function(i) {
+            if( i % 5 == 0 ) {
+              $(this).nextAll().andSelf().slice(0,5).wrapAll('<ul class="clearfix"></ul>');
+            }
+          });
+
+          resizeSquares();
+
+        };
+
+        var boxTemplate = function(key, selectors) {
+          key = parseInt(key);
+          var rgbBackground = 'rgb('+[key, key, key].join(',')+')';
+          var rgbColor = 'rgb('+[255 - key, 255 - key, 255 - key].join(',')+')';
+          var hex = rgbToHex(key, key, key);
+
+          return [
+            '<li style="background-color:'+rgbBackground+'; color:'+rgbColor+'" data-key="'+key+'">',
+              '<div class="container">',
+                '<h2>',
+                  rgbToHex(key, key, key),
+                '</h2>',
+                '<p>',
+                  'Used in ' + selectors.length + ' places',
+                '</p>',
+              '</div>',
+            '</li>'
+          ].join('');
+        };
+
+
+        var parseColors = function(css) {
+
+          console.log('parsing colors');
+
+          //var allHexColors = css.match(/#([a-f]|[A-F]|[0-9]){3}(([a-f]|[A-F]|[0-9]){3})?\b/g);
+          window.cssBlocks = css.match(/([^{]+)\s*\{\s*([^}]+)\s*}/g);
+          //var uniqueHexColors = _.uniq(allHexColors);
+          var html = '';
+          var hex;
+          window.sorted = [];
+          window.map = {};
+
+          for(var i = 0; i < cssBlocks.length; i++) {
+            hexColor = cssBlocks[i].match(/#([a-f]|[A-F]|[0-9]){3}(([a-f]|[A-F]|[0-9]){3})?\b/g);
+
+            if(!hexColor) {
+              continue;
+            }
+
+            selector = cssBlocks[i].match(/(.*)\{/)[1];
+            
+            if(hexColor) {
+
+              //convert hex to rgb
+              rgb = hexToRgb(hexColor[0]);
+
+              //and filter out none greyscale colors
+              if(rgb.r == rgb.g && rgb.g == rgb.b) {
+
+                if(!_.isArray(map[rgb.r])) {
+                  map[rgb.r] = [];
+                }
+
+                COLOR_FREQ[rgb.r] = (COLOR_FREQ[rgb.r] ? COLOR_FREQ[rgb.r] + 1 : 1);
+
+                map[rgb.r].push(selector);
+
+              }
+
+              
+            }
+
+          }
+
+          console.log('after for loop we have', Object.keys(map).length, 'greys');
+
+          sortByColor();
+
+
+        };
+
+        $.get('wanelo/everlane.css', function(cssText) {
+          console.log('got css');
+          RAW_CSS = cssText;
+          parseColors(cssText);
+        });
+
+        resizeSquares();
+
+        $(window).on('resize', resizeSquares)
+
+      });
+
+    </script>
+     
+  </body>
+</html>
