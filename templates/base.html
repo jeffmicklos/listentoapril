@@ -39,7 +39,7 @@
         </li>
       </ul>
     </div>
-     
+
     <div class="container">
 
       <div class="loading-screen"></div>
@@ -49,45 +49,20 @@
         <h1 itemprop="name">April</h1>
 
         <div itemprop="track" itemscope itemtype="http://schema.org/MusicRecording">
-          <meta itemprop="duration" content="PT4M37S" />
-          <meta itemprop="description" content="A cover of the amazing song by Mogwai" />
-          <meta itemprop="keywords" content="post-rock, ambient, shoegaze, mogwai, cover, postrock" />
-          <meta itemprop="url" content="http://jeffmicklos.s3.amazonaws.com/april/April%20-%20I%20Know%20You%20Are%20But%20What%20Am%20I.mp3" />
+          <meta itemprop="duration" content="PT9M48S" />
+          <meta itemprop="description" content="This is our first song" />
+          <meta itemprop="keywords" content="post-rock, ambient, postrock, instrumental" />
+          <meta itemprop="url" content="http://jeffmicklos.s3.amazonaws.com/april/April%20-%20Exit%20Music%20(For%20a%20Job).mp3" />
 
-          <span itemprop="name">I Know You Are But What Am I?</span>
+          <span itemprop="name">Exit Music (For a Job)</span>
 
-          <iframe width="640" height="65" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/117261269&amp;color=333031&amp;auto_play=false&amp;show_artwork=false&amp;show_playcount=false&amp;theme_color=f1f1f1">
+          <iframe width="640" height="65" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/140633026&amp;color=1a1a1a&amp;auto_play=false&amp;show_artwork=false&amp;show_playcount=false&amp;theme_color=f1f1f1">
           </iframe>
 
-          <a itemprop="audio" href="http://jeffmicklos.s3.amazonaws.com/april/April%20-%20I%20Know%20You%20Are%20But%20What%20Am%20I.mp3" class="download-link" title="Free Download of I Know You Are But What Am I">Download mp3 for Free</a>
+          <a itemprop="audio" href="http://jeffmicklos.s3.amazonaws.com/april/April%20-%20Exit%20Music%20(For%20a%20Job).mp3" class="download-link" title="Free Download of Exit Music (For a Job)">Download mp3 for free</a>
         </div>
 
       </div>
-      
-      {% if not g.is_mobile %}
-        <video audio="muted" autoplay loop>
-          <source src="//jeffmicklos.s3.amazonaws.com/april/web/bg_ipod.ogv" type="video/ogg; codecs=&quot;theora, vorbis&quot;">
-          <source src="//jeffmicklos.s3.amazonaws.com/april/web/bg_ipod.mp4" type="video/mp4; codecs=&quot;avc1.42E01E, mp4a.40.2&quot;">
-        </video>
-
-        <svg id="image" version="1.1" xmlns="http://www.w3.org/2000/svg">
-          <defs>  
-
-            <filter id="displacement" x="0%" y="0%" height="100%" width="100%">
-              <feGaussianBlur stdDeviation="10" />
-              <feComponentTransfer>
-                <feFuncG tableValues="0 .5 1" type="discrete" />
-                <feFuncB tableValues="0" type="discrete" />
-              </feComponentTransfer>
-              <feColorMatrix values="0.3333 0.3333 0.3333 0 0
-                                   0.3333 0.3333 0.3333 0 0
-                                  0.3333 0.3333 0.3333 0 0
-                                  0      0      0      1 0"/>
-            </filter>
-
-          </defs>
-        </svg>
-      {% endif %}
 
       {% block content %}
       {% endblock %}
@@ -115,6 +90,6 @@
       April.init();
 
     </script>
-     
+
   </body>
 </html>

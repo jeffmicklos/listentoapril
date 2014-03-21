@@ -3,13 +3,10 @@ April = {
   init: function() {
 
     this.w = $(window);
-    this.video = $('video');
     this.footer = $('.footer');
     this.container = $('.container');
     this.contentContainer = $('.content');
     this.loadingScreen = $('.loading-screen');
-
-    this.video.css('filter', 'url(#displacement)');
 
     // A Firebase object will eventually fill this variable
     this.store = null;
@@ -19,21 +16,13 @@ April = {
     $('.download-link').on('click', $.proxy(this.onDownload, this));
     $('.email').on('submit', $.proxy(this.onEmailSubmit, this));
 
-    // Once the video is ready to play, fade out the loading screen
-    if(!this.video.get(0)) {
-      this.hideLoadingScreen();
-    } else if(this.video.get(0).buffered.length) {
-      this.hideLoadingScreen();
-    } else {
-      this.video.on('canplay', $.proxy(this.hideLoadingScreen, this));
-    }
+    this.hideLoadingScreen();
 
     this.getScript('https://cdn.firebase.com/v0/firebase.js', $.proxy(this.onFirebaseLoad, this));
 
   },
 
   arrangeElements: function() {
-    this.fitVideo();
     this.verticalCenter(this.contentContainer);
     this.horizontalCenter(this.contentContainer);
     this.container.css('height', this.w.height());
@@ -50,7 +39,7 @@ April = {
   },
 
   onDownload: function() {
-    ga('send', 'event', 'Music', 'Download', 'I Know You Are But What Am I');
+    ga('send', 'event', 'Music', 'Download', 'Exit Music');
 
     var fb_param = {};
     fb_param.pixel_id = '6009099589898';
@@ -67,7 +56,7 @@ April = {
   },
 
   onEmailSubmit: function(event) {
-    
+
     event.preventDefault();
 
     var button = $('.email-submit');
@@ -94,7 +83,7 @@ April = {
   onFirebaseLoad: function() {
 
     var self = this;
-    
+
     this.store = new Firebase('https://april.firebaseio.com/');
 
     if(!IS_MOBILE) {
@@ -107,28 +96,6 @@ April = {
       });
     }
 
-  },
-
-  fitVideo: function() {
-    var videoW = 960;
-    var videoH = 544;
-    var windowW = this.w.width();
-    var windowH = this.w.height();
-
-    var videoRatio = videoW / videoH;
-    var windowRatio = windowW / windowH;
-
-    if(windowRatio < videoRatio) {
-      this.video.css({
-        height: '100%',
-        width: 'auto'
-      });
-    } else {
-      this.video.css({
-        height: 'auto',
-        width: '100%',
-      });
-    }
   },
 
   verticalCenter: function(element) {
