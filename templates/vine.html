@@ -39,6 +39,12 @@
 
       var video = $('#video');
 
+      $(document).on('keyup', function(event) {
+        if(event.which === 72) {
+          video.toggleClass('filtered');
+        }
+      })
+
       var fitVideo = function() {
 
         var w = $(window);
