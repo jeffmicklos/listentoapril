@@ -46,6 +46,12 @@ import cStringIO
 import re
 import random
 import time
+import datetime
+
+if datetime.datetime.now().time().hour % 4 == 0:
+	print 'on a fourth hour of the day... run script!'
+else:
+	sys.exit(0)
 
 ##### EDIT THESE BELOW
 
@@ -97,8 +103,6 @@ def login():
 	c.perform()
 	curlData = buf.getvalue()
 	buf.close()
-
-	print curlData
 	
 	'''								IMPORTANT INFORMATION										'''
 	clientid = '9d836570317f4c18bca0db6d2ac38e29'
@@ -124,8 +128,6 @@ def login():
 	c.perform()
 	curlData = buf.getvalue()
 	buf.close()
-
-	print curlData
 
 	if '<a href="/logout">LOG OUT</a>' in curlData:
 		print "Logged into " + usernames[x]
