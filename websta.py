@@ -48,10 +48,11 @@ import random
 import time
 import datetime
 
-#if datetime.datetime.now().time().hour % 4 == 0:
-#	print 'on a fourth hour of the day... run script!'
-#else:
-#	sys.exit(0)
+if datetime.datetime.now().time().hour % 4 == 0:
+	print 'on a fourth hour of the day... run script!'
+else:
+	print 'job started but we are holding off...'
+	sys.exit(0)
 
 ##### EDIT THESE BELOW
 
@@ -71,7 +72,7 @@ x = 0
 hashtaglikelimit = 20
 
 #your list of hashtags
-hashtags = ['thiswilldestroyyou', 'reverb', 'sigurros', 'strymon', 'explosionsinthesky']
+hashtags = ['thiswilldestroyyou', 'reverb', 'sigurros', 'strymon', 'explosionsinthesky', 'riceboysleeps', 'eluvium']
 #random.shuffle(hashtags)
 
 
