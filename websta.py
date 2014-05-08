@@ -97,6 +97,8 @@ def login():
 	c.perform()
 	curlData = buf.getvalue()
 	buf.close()
+
+	print curlData
 	
 	'''								IMPORTANT INFORMATION										'''
 	clientid = '9d836570317f4c18bca0db6d2ac38e29'
@@ -122,6 +124,8 @@ def login():
 	c.perform()
 	curlData = buf.getvalue()
 	buf.close()
+
+	print curlData
 
 	if '<a href="/logout">LOG OUT</a>' in curlData:
 		print "Logged into " + usernames[x]
@@ -208,8 +212,9 @@ def like():
 							### Otherwise let's switch tags:
 							else:
 								print "Your account has been rate limited. Sleeping for 10 minute(s). Liked "+str(likecount)+" photo(s)..."
-								time.sleep(600)
-								like()
+								sys.exit(0)
+								#time.sleep(600)
+								#like()
 								
 def main():
 	login()
