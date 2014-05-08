@@ -48,10 +48,10 @@ import random
 import time
 import datetime
 
-if datetime.datetime.now().time().hour % 4 == 0:
-	print 'on a fourth hour of the day... run script!'
-else:
-	sys.exit(0)
+#if datetime.datetime.now().time().hour % 4 == 0:
+#	print 'on a fourth hour of the day... run script!'
+#else:
+#	sys.exit(0)
 
 ##### EDIT THESE BELOW
 
