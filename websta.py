@@ -47,8 +47,9 @@ import re
 import random
 import time
 import datetime
+import smtplib
 
-if datetime.datetime.now().time().hour % 2 == 0:
+if datetime.datetime.now().time().hour % 4 == 0:
 	print 'on a fourth hour of the day... run script!'
 else:
 	print 'job started but we are holding off...'
@@ -72,8 +73,10 @@ x = 0
 hashtaglikelimit = 20
 
 #your list of hashtags
-hashtags = ['thiswilldestroyyou', 'reverb', 'sigurros', 'strymon', 'explosionsinthesky', 'riceboysleeps', 'eluvium', 'postrock']
+hashtags = ['thiswilldestroyyou', 'starsofthelid', 'sigurros', 'explosionsinthesky', 'riceboysleeps', 'eluvium', 'postrock']
 #random.shuffle(hashtags)
+
+max_likes = 37
 
 
 
@@ -197,6 +200,11 @@ def like():
 							likecount += 1
 							hashtaglikes += 1
 							print "You liked image "+imageid+"! \t Like count: "+str(likecount)
+							
+							if likecount >= max_likes:
+								print 'Stopping after ' + max_likes + ' likes.'
+								sys.exit(0)
+
 							repeat = False
 							time.sleep(random.randrange(1,7))
 						else:
