@@ -30,6 +30,10 @@ def photo_album(service, username):
 def wanelo():
   return render_template('wanelo.html')
 
+@app.route('/yelp-grey')
+def grey():
+  return render_template('wanelo.html')
+
 @app.route('/pinterest')
 def pinterest():
   return render_template('pinterest.html')
