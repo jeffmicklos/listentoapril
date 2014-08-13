@@ -34,6 +34,10 @@ def wanelo():
 def grey():
   return render_template('wanelo.html')
 
+@app.route('/uber-grey')
+def uber_grey():
+  return render_template('wanelo.html')
+
 @app.route('/pinterest')
 def pinterest():
   return render_template('pinterest.html')
