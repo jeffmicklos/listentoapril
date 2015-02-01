@@ -1,4 +1,4 @@
-April = {
+April = $.extend(window.April || {}, {
 
   init: function() {
 
@@ -7,6 +7,9 @@ April = {
     this.container = $('.container');
     this.contentContainer = $('.content');
     this.loadingScreen = $('.loading-screen');
+
+    // Auto-scrolls page to next song section, sorry Brian.
+    new April.ScrollWatcher();
 
     // A Firebase object will eventually fill this variable
     this.store = null;
@@ -26,7 +29,6 @@ April = {
     this.verticalCenter(this.contentContainer);
     this.horizontalCenter(this.contentContainer);
     this.container.css('height', this.w.height());
-    this.footer.css('top', this.w.height());
   },
 
   hideLoadingScreen: function() {
@@ -38,9 +40,9 @@ April = {
     });
   },
 
-  onDownload: function() {
-    ga('send', 'event', 'Music', 'Download', 'Exit Music');
-
+  onDownload: function(event) {
+    ga('send', 'event', 'Music', 'Download', $(event.currentTarget).data('song'));
+    /*
     var fb_param = {};
     fb_param.pixel_id = '6009099589898';
     fb_param.value = '0.00';
@@ -52,6 +54,7 @@ April = {
       var ref = document.getElementsByTagName('script')[0];
       ref.parentNode.insertBefore(fpw, ref);
     })();
+    */
 
   },
 
@@ -65,7 +68,6 @@ April = {
 
     // very dumb validation for now
     if(email !== '' && email.indexOf('@') !== -1 && this.store) {
-      console.log('hy')
       userRef = this.store.push();
       userRef.child('timestamp').set(Firebase.ServerValue.TIMESTAMP);
       userRef.child('data').set({
@@ -89,9 +91,9 @@ April = {
     if(!IS_MOBILE) {
       this.w.on('load', function() {
         setTimeout(function() {
-          self.footer.animate({
-            top: self.w.height() - self.footer.find('form').height()
-          }, 400, 'ease-in');
+          self.footer.velocity({
+            bottom: 0
+          }, {duration: 500, easing: [0.175, 0.885, 0.32, 1.275]});
         }, 2000);
       });
     }
@@ -126,4 +128,4 @@ April = {
     document.getElementsByTagName('head')[0].appendChild(script);
   }
 
-};
+});

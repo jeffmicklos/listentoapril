@@ -19,7 +19,7 @@
     {% endassets %}
 
   </head>
-  <body class="{% if g.is_mobile %}mobile{% endif %}">
+  <body class="{% if g.is_mobile %}mobile{% endif %}" itemscope itemtype="http://schema.org/MusicGroup">
 
     <div class="footer">
 
@@ -40,11 +40,36 @@
       </ul>
     </div>
 
-    <div class="container">
+    <div class="container container--hblc">
 
       <div class="loading-screen"></div>
 
-      <div class="content" itemscope itemtype="http://schema.org/MusicGroup">
+      <div class="content">
+
+        <h1 itemprop="name">April</h1>
+
+        <div itemprop="track" itemscope itemtype="http://schema.org/MusicRecording">
+          <meta itemprop="duration" content="PT9M48S" />
+          <meta itemprop="description" content="This is our first song" />
+          <meta itemprop="keywords" content="post-rock, ambient, postrock, instrumental" />
+          <meta itemprop="url" content="http://jeffmicklos.s3.amazonaws.com/april/April%20-%20Exit%20Music%20(For%20a%20Job).mp3" />
+
+          <span itemprop="name">Happy Birthday, Lauren Conrad</span>
+
+          <iframe width="640" height="65" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/188888234%3Fsecret_token%3Ds-YHibx&amp;color=595757&amp;auto_play=false&amp;show_artwork=false&amp;show_playcount=false&amp;theme_color=f1f1f1">
+          </iframe>
+
+          <a itemprop="audio" href="http://jeffmicklos.s3.amazonaws.com/april/April%20-%20Happy%20Birthday,%20Lauren%20Conrad.mp3" class="download-link" title="Free Download of Happy Birthday, Lauren Conrad" data-song="hblc">Download mp3 for free</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="container container--exit-music">
+
+      <div class="loading-screen"></div>
+
+      <div class="content">
 
         <h1 itemprop="name">April</h1>
 
@@ -59,19 +84,19 @@
           <iframe width="640" height="65" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/140633026&amp;color=1a1a1a&amp;auto_play=false&amp;show_artwork=false&amp;show_playcount=false&amp;theme_color=f1f1f1">
           </iframe>
 
-          <a itemprop="audio" href="http://jeffmicklos.s3.amazonaws.com/april/April%20-%20Exit%20Music%20(For%20a%20Job).mp3" class="download-link" title="Free Download of Exit Music (For a Job)">Download mp3 for free</a>
+          <a itemprop="audio" href="http://jeffmicklos.s3.amazonaws.com/april/April%20-%20Exit%20Music%20(For%20a%20Job).mp3" class="download-link" title="Free Download of Exit Music (For a Job)" data-song="Exit Music">Download mp3 for free</a>
         </div>
 
       </div>
+    </div>
 
       {% block content %}
       {% endblock %}
 
-    </div>
-
     <script src="//cdnjs.cloudflare.com/ajax/libs/zepto/1.0/zepto.min.js"></script>
+    <script src="//cdn.jsdelivr.net/velocity/1.2.1/velocity.min.js"></script>
 
-    {% assets filters="rjsmin", output="gen/javascript.js", "js/april.js" %}
+    {% assets filters="rjsmin", output="gen/javascript.js", "js/scroll_watcher.js", "js/april.js" %}
       <script src="{{ ASSET_URL }}"></script>
     {% endassets %}
 

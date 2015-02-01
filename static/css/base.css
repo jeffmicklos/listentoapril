@@ -14,11 +14,6 @@ body.mobile ul {
   width: 90%;
 }
 
-body {
-  background: url(http://jeffmicklos.s3.amazonaws.com/april/web/exit_music_bg.jpg);
-  background-size: cover;
-}
-
 .loading-screen {
   background-color: #ebebeb;
   width: 100%;
@@ -29,6 +24,25 @@ body {
 
 .container {
   overflow: hidden;
+  position: relative;
+}
+
+
+.container--exit-music {
+  color: #fff;
+  background: url(http://jeffmicklos.s3.amazonaws.com/april/web/exit_music_bg.jpg);
+  background-size: cover;
+}
+
+.container--hblc {
+  background: url(http://jeffmicklos.s3.amazonaws.com/april/web/hblc_bg_1200.png);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+}
+
+.container--hblc {
+  color: #595757;
 }
 
 .content {
@@ -40,12 +54,11 @@ body {
 }
 
 .footer {
-  background-color: #434343;
   height: 80px;
-  position: absolute;
-  z-index: 10;
+  position: fixed;
   width: 100%;
   z-index: 2;
+  bottom: -80px;
 }
 
 .footer ul {
@@ -72,7 +85,7 @@ h1 {
   text-align: center;
   width: 100%;
   letter-spacing: 1px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 /*
 video {
@@ -86,11 +99,12 @@ video {
 */
 
 span {
-  text-transform: uppercase;
+  text-transform: lowercase;
+  font-variant: small-caps;
   margin-bottom: 30px;
   letter-spacing: 1px;
   display: block;
-  font-size: 1rem;
+  font-size: 1.15rem;
 }
 
 iframe {
@@ -109,7 +123,6 @@ form {
   width: 100%;
   margin: 0 auto;
   padding: 20px 0;
-  background-color: #1a1a1a;
   text-align: center;
   /*opacity: 0.2;
   -webkit-transition: opacity 0.3s;*/
@@ -129,22 +142,23 @@ input[type=email] {
   width: 250px;
   height: 40px;
   font-family: Arial;
-  border: 2px solid #1a1a1a;
-  background-color: #FFF;
+  border: 2px solid #666;
+  background-color: #f1f1f1;
   padding: 5px 5px;
   box-sizing: border-box;
   margin-right: 10px;
   font-size: 12px;
-  color: #333;
+  color: #666;
 }
 
 input[type=submit] {
-  background-color: rgba(0, 0, 0, 0);
-  border: 2px solid #EBEBEB;
-  color: #F1F1F1;
+  background-color: #f1f1f1;
+  border: 2px solid #666;
+  color: #666;
   text-transform: uppercase;
   font-family: Arial;
   letter-spacing: 1px;
+  font-weight: bold;
   height: 40px;
   padding: 5px 15px;
   font-size: 12px;
