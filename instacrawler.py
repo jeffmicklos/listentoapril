@@ -97,20 +97,19 @@ def like(br, hashtags):
 			print "Max likes per hashtag reached. Moving to next hashtag"
 			hashtag_likes = 0
 			like(br, hashtags)
-		
-		elif bool(re.search("200", response)):
-			print "\tLiked " + str(id)
-			current_likes += 1
-			hashtag_likes += 1
-			time.sleep(random.randrange(120,130))
-			
-		elif bool(re.search("429", response)):
-			#print response
-			print "Sleeping for an hour..."
-			time.sleep(3600)
 		else:
 			response = perform_request(id)
-
+		
+			if bool(re.search("200", response)):
+				print "\tLiked " + str(id)
+				current_likes += 1
+				hashtag_likes += 1
+				time.sleep(random.randrange(120,130))
+				
+			elif bool(re.search("429", response)):
+				#print response
+				print "Sleeping for an hour..."
+				time.sleep(3600)
 			
 	print "Liked " + str(current_likes) + " photos"
 	
