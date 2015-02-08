@@ -8,6 +8,7 @@
 #			- Changed custom hashtag list to be user-specified array vs. a file
 #			- Generates a random User-Agen
 #------------------------------------------------------------------------------------------------------------------------#
+import os
 import mechanize, re, time, sys, pycurl, hmac, random, socket
 from hashlib import sha256
 
