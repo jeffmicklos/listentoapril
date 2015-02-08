@@ -33,7 +33,16 @@ access_token = os.environ['INSTAGRAM_ACCESS_TOKEN']
 max_likes = 23
 likes_per_hashtag = 10
 popular_tags = 0		
-custom_hashtags = ['sigurros','strymon','thiswilldestroyyou','eluvium','nilsfrahm','ambientnotes']						
+custom_hashtags = [
+	'postrock',
+	'sigurros',
+	'strymon',
+	'thiswilldestroyyou',
+	'eluvium',
+	'nilsfrahm',
+	'ambientnotes',
+	'riceboysleeps'
+]						
 #------------------------------------------------------------------------------------------------------------------------#
 
 # Generate a random User Agent
@@ -80,7 +89,6 @@ def like(br, hashtags):
 	
 	media_id = re.findall("span class=\"like_count_(.*)\"", response.read())
 	for id in media_id:
-		response = perform_request(id)
 		if current_likes >= max_likes:
 			print "Max likes reached. Exiting"
 			sys.exit()
@@ -100,6 +108,9 @@ def like(br, hashtags):
 			#print response
 			print "Sleeping for an hour..."
 			time.sleep(3600)
+		else:
+			response = perform_request(id)
+
 			
 	print "Liked " + str(current_likes) + " photos"
 	
