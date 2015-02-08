@@ -49,11 +49,12 @@ import time
 import datetime
 import smtplib
 
-if datetime.datetime.now().time().hour % 4 == 0:
-	print 'on a fourth hour of the day... run script!'
-else:
-	print 'job started but we are holding off...'
-	sys.exit(0)
+
+#if datetime.datetime.now().time().hour % 4 == 0:
+#	print 'on a fourth hour of the day... run script!'
+#else:
+#	print 'job started but we are holding off...'
+#	sys.exit(0)
 
 ##### EDIT THESE BELOW
 
@@ -70,13 +71,13 @@ passwords = [os.environ['INSTAGRAM_PASSWORD']]
 x = 0
 
 #set a like limit per hashtag. Set value to 0 if you don't want a limit
-hashtaglikelimit = 20
+hashtaglikelimit = 10
 
 #your list of hashtags
-hashtags = ['thiswilldestroyyou', 'starsofthelid', 'sigurros', 'explosionsinthesky', 'riceboysleeps', 'eluvium', 'postrock']
-#random.shuffle(hashtags)
+hashtags = ['thiswilldestroyyou', 'sigurros', 'explosionsinthesky', 'riceboysleeps', 'eluvium', 'postrock']
+random.shuffle(hashtags)
 
-max_likes = 37
+max_likes = 23
 
 
 
