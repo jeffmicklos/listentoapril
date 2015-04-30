@@ -2,6 +2,8 @@ April = $.extend(window.April || {}, {
 
   init: function() {
 
+    var self = this;
+
     this.w = $(window);
     this.footer = $('.footer');
     this.container = $('.container');
@@ -9,7 +11,21 @@ April = $.extend(window.April || {}, {
     this.loadingScreen = $('.loading-screen');
 
     // Auto-scrolls page to next song section, sorry Brian.
-    new April.ScrollWatcher();
+    this.scrollWatcher = new ScrollWatcher();
+
+    this.scrollWatcher.on('scrollup', function() {
+      self.container.first().velocity('scroll', {
+        duration: 500,
+        easing: 'easeOutBack'
+      });
+    });
+
+    this.scrollWatcher.on('scrolldown', function() {
+      self.container.last().velocity('scroll', {
+        duration: 500,
+        easing: 'easeOutBack'
+      });
+    });
 
     // A Firebase object will eventually fill this variable
     this.store = null;
@@ -33,11 +49,17 @@ April = $.extend(window.April || {}, {
 
   hideLoadingScreen: function() {
     var self = this;
-    this.loadingScreen.animate({
+
+    this.loadingScreen.velocity({
       opacity: 0
-    }, 1000, 'ease', function() {
-      self.loadingScreen.remove();
+    }, {
+      duration: 1000,
+      easing: [0.175, 0.885, 0.32, 1.275],
+      complete: function() {
+        self.loadingScreen.remove();
+      }
     });
+ 
   },
 
   onDownload: function(event) {

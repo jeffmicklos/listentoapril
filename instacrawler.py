@@ -18,6 +18,10 @@ API = "https://api.instagram.com/v1/media/"
 browsers = ["IE ","Mozilla/","Gecko/","Opera/","Chrome/","Safari/"]
 operatingsystems = ["Windows","Linux","OS X","compatible","Macintosh","Intel"]
 
+# Generate a random User Agent
+# useragent = random.choice(browsers) + str(random.randrange(1,9)) + "." + str(random.randrange(0,50)) + " (" + random.choice(operatingsystems) + "; " + random.choice(operatingsystems) + "; rv:" + str(random.randrange(1,9)) + "." + str(random.randrange(1,9)) + "." + str(random.randrange(1,9)) + "." + str(random.randrange(1,9)) + ")"
+useragent = 'Mozilla/5.0 (iPhone; CPU iPhone OS 7_1_1 like Mac OS X) AppleWebKit/537.51.2 (KHTML, like Gecko) Version/7.0 Mobile/11D201 Safari/9537.53'
+
 #-------------------------------------------------MODIFY THE BELOW SETTINGS----------------------------------------------#
 # Client ID 		-	Register APP on Instagram API developers page
 # IP address		- 	Run Ipconfig.exe and use your IP address if using OS other than Windows
@@ -27,9 +31,10 @@ operatingsystems = ["Windows","Linux","OS X","compatible","Macintosh","Intel"]
 # Popular Tags		- 	1 to use the popular tags, 0 to use your specified hashtag array
 # Custom Hashtags	- 	Fill in any hashtags you want to use in this format: ['tag1','tag2','tag3, ... 'tagN']
 #-------------------------------------------------------------------------------------------------------------------------
-client_id = os.environ['INSTAGRAM_CLIENT_ID']
-IP = socket.gethostbyname(socket.gethostname())												 
-access_token = os.environ['INSTAGRAM_ACCESS_TOKEN']
+client_id = '1ccbffba4d3946a18b2bb6b3b3264dc6'#os.environ['INSTAGRAM_CLIENT_ID']
+#IP = socket.gethostbyname(socket.gethostname())		
+IP = '24.23.191.185'										 
+access_token = '609464179.1fb234f.43011b5d7e764f7880aef7cd8d4f7a83' #os.environ['INSTAGRAM_ACCESS_TOKEN']
 max_likes = 23
 likes_per_hashtag = 10
 popular_tags = 0		
@@ -45,8 +50,9 @@ custom_hashtags = [
 ]						
 #------------------------------------------------------------------------------------------------------------------------#
 
-# Generate a random User Agent
-useragent = random.choice(browsers) + str(random.randrange(1,9)) + "." + str(random.randrange(0,50)) + " (" + random.choice(operatingsystems) + "; " + random.choice(operatingsystems) + "; rv:" + str(random.randrange(1,9)) + "." + str(random.randrange(1,9)) + "." + str(random.randrange(1,9)) + "." + str(random.randrange(1,9)) + ")"
+
+
+
 
 def perform_request(id):
 	curl = pycurl.Curl()
@@ -63,6 +69,8 @@ def perform_request(id):
 	curl.perform()
 	
 	response = str(curl.getinfo(curl.HTTP_CODE))
+
+	print response
 	curl.close()
 	
 	return response
@@ -83,11 +91,18 @@ def like(br, hashtags):
 		response = br.open(websta_url + "tag/" + str(hashtags[current_tag]))
 		print "Liking #" + str(hashtags[current_tag])
 	else:
+		print 'okay, about to ask websta'
 		current_tag = random.randrange(0, len(custom_hashtags))
-		response = br.open(websta_url + "tag/" + str(custom_hashtags[current_tag]))
-		print "Liking #" + str(custom_hashtags[current_tag])
+		response = br.open(websta_url + "tag/" + str(custom_hashtags[current_tag]), timeout=600.0)
+
+		print websta_url + "tag/" + str(custom_hashtags[current_tag])
+
+		print "Liking #" + str(custom_hashtags[current_tag]) + "(" + str(current_likes) + " thus far)"
 	
-	media_id = re.findall("span class=\"like_count_(.*)\"", response.read())
+	media_id = re.findall("span id=\"like_count_(.*)\"", response.read())
+
+	print media_id
+
 	for id in media_id:
 		if current_likes >= max_likes:
 			print "Max likes reached. Exiting"
@@ -99,6 +114,11 @@ def like(br, hashtags):
 			like(br, hashtags)
 		else:
 			response = perform_request(id)
+
+			print current_likes > max_likes
+			print hashtag_likes > likes_per_hashtag
+
+			#print response
 		
 			if bool(re.search("200", response)):
 				print "\tLiked " + str(id)
@@ -130,6 +150,6 @@ if __name__ == "__main__":
 	br.set_handle_equiv(False)
 	br.addheaders = [('User-Agent', useragent),('Accept', '*/*')]
 	
-	hashtags = obtain_hashtags(br)
-	like(br, hashtags)
+	#hashtags = obtain_hashtags(br)
+	like(br, [])
 	
