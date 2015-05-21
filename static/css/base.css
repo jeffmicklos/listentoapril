@@ -39,10 +39,28 @@ body.mobile ul {
   background-size: 100%;
   background-repeat: no-repeat;
   background-position: 0 100%;
+  color: #595757;
 }
 
-.container--hblc {
-  color: #595757;
+.container--light {
+  background: url(http://jeffmicklos.s3.amazonaws.com/april/web/light_bg.jpg);
+  background-size: cover;
+  color: #424242;
+}
+
+.container--exit-music *::selection {
+  background: #fff;
+  color: #c7c5c8;
+}
+
+.container--hblc *::selection {
+  background: #595757;
+  color: #ebebeb;
+}
+
+.container--light *::selection {
+  background: #fff; /* WebKit/Blink Browsers */
+  color: #d3d0d7;
 }
 
 .content {

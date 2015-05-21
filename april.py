@@ -10,9 +10,11 @@ app.config['DEBUG'] = True
 assets = Environment(app)
 
 @app.route('/')
-def hello():
+@app.route('/song/<title>')
+def hello(title=None):
   MOBILE_REGEX = 'palm|blackberry|nokia|phone|mobi|symbian|ericsson|motorola|samsung|portable|sprint|android|vodafone|ipod|webos|pocket|iphone|mobileexplorer'
   g.is_mobile = bool(re.search(MOBILE_REGEX, request.user_agent.string, re.IGNORECASE))
+  g.title = title
   return render_template('base.html')
 
 @app.route('/vine')
@@ -22,9 +24,9 @@ def vine():
 @app.route('/photo-album')
 @app.route('/photo-album/<service>/<username>')
 def photo_album(service, username):
-	g.service = service
-	g.username = username
-	return render_template('photo_album.html')
+  g.service = service
+  g.username = username
+  return render_template('photo_album.html')
 
 @app.route('/wanelo')
 def wanelo():
@@ -44,9 +46,9 @@ def pinterest():
 
 @app.route('/pinterest/<username>')
 def boards(username):
-	r = requests.get('http://pinterestapi.co.uk/'+username+'/boards')
-	return json.dumps(r.content)
+  r = requests.get('http://pinterestapi.co.uk/'+username+'/boards')
+  return json.dumps(r.content)
 
 @app.route('/pinterest/<username>/<board>')
 def pins(username, board):
-	return ''
+  return ''

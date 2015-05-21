@@ -21,23 +21,30 @@
 
   var _$ = _interopRequire(_jquery);
 
-  var ScrollWatcher = (function () {
-    function ScrollWatcher() {
-      _classCallCheck(this, ScrollWatcher);
+  var _default = (function () {
+    var _class = function _default() {
+      var _ref = arguments[0] === undefined ? {} : arguments[0];
+
+      var _ref$scrollDuration = _ref.scrollDuration;
+      var scrollDuration = _ref$scrollDuration === undefined ? 1200 : _ref$scrollDuration;
+
+      _classCallCheck(this, _class);
 
       this._locked = false;
       this.squelched = false;
-      this.SCROLL_DURATION = 1200;
+      this.scrollDuration = scrollDuration;
 
       this.callbacks = {
         scrollup: _$.Callbacks(),
         scrolldown: _$.Callbacks()
       };
 
-      _$(document).on('mousewheel DOMMouseScroll', _$.proxy(this.onMouseWheel, this));
-    }
+      console.log('contrusctor')
 
-    _createClass(ScrollWatcher, [{
+      _$(document).on('mousewheel DOMMouseScroll', _$.proxy(this.onMouseWheel, this));
+    };
+
+    _createClass(_class, [{
       key: 'destroy',
       value: function destroy() {
         for (var eventKey in this.callbacks) {
@@ -65,15 +72,14 @@
       key: 'onMouseWheel',
       value: function onMouseWheel(event) {
         var _this = this;
-
-        if (this._locked || this.squelched) {
-          return;
-        }
-
         var delta = event.originalEvent.wheelDeltaY || -1 * event.originalEvent.deltaY;
 
         event.preventDefault();
         event.stopPropagation();
+
+        if(this._locked) {
+          return;
+        }
 
         this._locked = true;
 
@@ -85,12 +91,12 @@
 
         setTimeout(function () {
           _this._locked = false;
-        }, this.SCROLL_DURATION);
+        }, this.scrollDuration);
       }
     }]);
 
-    return ScrollWatcher;
+    return _class;
   })();
 
-  module.exports = ScrollWatcher;
+  module.exports = _default;
 });

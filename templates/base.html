@@ -3,7 +3,7 @@
   <head>
     <title>April</title>
 
-    <meta name="description" content="an Ambient/Post-Rock band from San Francisco. Free music and hugs inside.">
+    <meta name="description" content="an ambient and post-rock band from San Francisco and San Diego. Free music and hugs inside.">
 
     {% if g.is_mobile %}
       <meta name="viewport" content="width=device-width, user-scalable=false;">
@@ -21,26 +21,18 @@
   </head>
   <body class="{% if g.is_mobile %}mobile{% endif %}" itemscope itemtype="http://schema.org/MusicGroup">
 
+    <!--
     <div class="footer">
-
       {% if not g.is_mobile %}
         <form class="email">
           <input type="email" class="email-value" placeholder="Email Address">
           <input type="submit" class="email-submit" value="Stay Up To Date">
         </form>
       {% endif %}
-
-      <ul>
-        <li>
-          <a href="https://soundcloud.com/listentoapril" rel="me" title="Listen to April the band on SoundCloud">SoundCloud</a>
-        </li>
-        <li>
-          <a href="http://instagram.com/listentoapril" rel="me" title="April the band on Instagram">Instagram</a>
-        </li>
-      </ul>
     </div>
+    -->
 
-    <div class="container container--hblc">
+    <div class="container container--light" data-permalink="light-leicht">
 
       <div class="loading-screen"></div>
 
@@ -50,7 +42,32 @@
 
         <div itemprop="track" itemscope itemtype="http://schema.org/MusicRecording">
           <meta itemprop="duration" content="PT9M48S" />
-          <meta itemprop="description" content="This is our first song" />
+          <meta itemprop="description" content="A drone in A" />
+          <meta itemprop="keywords" content="drone, ambient, postrock, instrumental" />
+          <meta itemprop="url" content="http://jeffmicklos.s3.amazonaws.com/april/April%20%E2%80%93%20Happy%20Birthday%20Lauren%20Conrad.mp3" />
+
+          <span itemprop="name">Light / Leicht</span>
+
+          <iframe width="640" height="65" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/188888234%3Fsecret_token%3Ds-YHibx&amp;color=595757&amp;auto_play=false&amp;show_artwork=false&amp;show_playcount=false&amp;theme_color=f1f1f1">
+          </iframe>
+
+          <a itemprop="audio" href="http://jeffmicklos.s3.amazonaws.com/april/April%20%E2%80%93%20Happy%20Birthday%20Lauren%20Conrad.mp3" class="download-link" title="Free Download of Happy Birthday, Lauren Conrad" data-song="hblc">Download mp3 for free</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="container container--hblc" data-permalink="happy-birthday-lauren-conrad">
+
+      <div class="loading-screen"></div>
+
+      <div class="content">
+
+        <h1 itemprop="name">April</h1>
+
+        <div itemprop="track" itemscope itemtype="http://schema.org/MusicRecording">
+          <meta itemprop="duration" content="PT9M48S" />
+          <meta itemprop="description" content="An ode to the magnificent and unfaltering Ms. Lauren Conrad" />
           <meta itemprop="keywords" content="post-rock, ambient, postrock, instrumental" />
           <meta itemprop="url" content="http://jeffmicklos.s3.amazonaws.com/april/April%20%E2%80%93%20Happy%20Birthday%20Lauren%20Conrad.mp3" />
 
@@ -65,7 +82,7 @@
 
     </div>
 
-    <div class="container container--exit-music">
+    <div class="container container--exit-music" data-permalink="exit-music-for-a-job">
 
       <div class="loading-screen"></div>
 
@@ -118,7 +135,7 @@
 
       require.config({
         paths: {
-          ScrollWatcher: 'js/bower/scroll-watcher/dist/scroll-watcher'
+          ScrollWatcher: '/js/bower/scroll-watcher/dist/scroll-watcher'
         }
       });
 

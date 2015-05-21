@@ -1,7 +1,6 @@
 April = $.extend(window.April || {}, {
 
   init: function() {
-
     var self = this;
 
     this.w = $(window);
@@ -9,23 +8,7 @@ April = $.extend(window.April || {}, {
     this.container = $('.container');
     this.contentContainer = $('.content');
     this.loadingScreen = $('.loading-screen');
-
-    // Auto-scrolls page to next song section, sorry Brian.
-    this.scrollWatcher = new ScrollWatcher();
-
-    this.scrollWatcher.on('scrollup', function() {
-      self.container.first().velocity('scroll', {
-        duration: 500,
-        easing: 'easeOutBack'
-      });
-    });
-
-    this.scrollWatcher.on('scrolldown', function() {
-      self.container.last().velocity('scroll', {
-        duration: 500,
-        easing: 'easeOutBack'
-      });
-    });
+    this.index = 0;
 
     // A Firebase object will eventually fill this variable
     this.store = null;
@@ -35,10 +18,57 @@ April = $.extend(window.April || {}, {
     $('.download-link').on('click', $.proxy(this.onDownload, this));
     $('.email').on('submit', $.proxy(this.onEmailSubmit, this));
 
+    var pathArray = window.location.pathname.split('/');
+    var songTitle = pathArray[2];
+    var songElement = $('.container[data-permalink='+songTitle+']');
+
+    if(songElement.length) {
+      this.index = songElement.index();
+      window.scrollTo(0, songElement.offset().top);
+    } else {
+      window.scrollTo(0, 1);
+    }
+
+    this.scrollWatcher = new ScrollWatcher();
+
+    this.scrollWatcher.on('scrollup', function() {
+      var peviousIndex = self.index - 1;
+      var prev = self.container.eq(peviousIndex);
+
+      if(peviousIndex >= 0) {
+        $('html, body').animate({
+          scrollTop: prev.offset().top
+        }, 500).promise().done(function() {
+          self.index = peviousIndex;
+
+          if(history.pushState) {
+            window.history.pushState({}, '', '/song/' + prev.data('permalink'));
+          }
+        });
+      
+      }
+    });
+
+    this.scrollWatcher.on('scrolldown', function() {
+      var nextIndex = self.index + 1;
+      var next = self.container.eq(nextIndex);
+
+      if(self.container.length >= nextIndex) {
+        $('html, body').animate({
+          scrollTop: next.offset().top
+        }, 500).promise().done(function(){
+          self.index = nextIndex;
+
+          if(history.pushState) {
+            window.history.pushState({}, '', '/song/' + next.data('permalink'));
+          }
+        });
+      }
+    });
+
     this.hideLoadingScreen();
 
     this.getScript('https://cdn.firebase.com/v0/firebase.js', $.proxy(this.onFirebaseLoad, this));
-
   },
 
   arrangeElements: function() {
