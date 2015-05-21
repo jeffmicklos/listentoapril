@@ -53,7 +53,7 @@ April = $.extend(window.April || {}, {
       var nextIndex = self.index + 1;
       var next = self.container.eq(nextIndex);
 
-      if(self.container.length >= nextIndex) {
+      if(self.container.length - 1 >= nextIndex) {
         $('html, body').animate({
           scrollTop: next.offset().top
         }, 500).promise().done(function(){
