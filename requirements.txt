@@ -6,7 +6,6 @@ MarkupSafe==0.18
 SQLAlchemy==0.8.3
 Werkzeug==0.9.4
 cssmin==0.2.0
-distribute==0.6.36
 gunicorn==18.0
 httplib2==0.8
 human-curl==0.1.3

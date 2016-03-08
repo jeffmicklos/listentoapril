@@ -52,3 +52,9 @@ def boards(username):
 @app.route('/pinterest/<username>/<board>')
 def pins(username, board):
   return ''
+
+@app.route('/sf-noise-therapy')
+def noise_therapy():
+  MOBILE_REGEX = 'palm|blackberry|nokia|phone|mobi|symbian|ericsson|motorola|samsung|portable|sprint|android|vodafone|ipod|webos|pocket|iphone|mobileexplorer'
+  g.is_mobile = bool(re.search(MOBILE_REGEX, request.user_agent.string, re.IGNORECASE))
+  return render_template('noise.html')
