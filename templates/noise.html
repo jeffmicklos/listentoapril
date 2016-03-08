@@ -62,6 +62,10 @@
         var random = Math.floor(Math.random() * headlines.length);
         headlines.addClass('hidden').eq(random).removeClass('hidden');
       }, 750);
+
+      $('a').on('click', function() {
+        ga('send', 'event', 'Action', 'Click', 'sf noise button');
+      });
     </script>
 
   </body>
