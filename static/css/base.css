@@ -51,7 +51,7 @@ body.mobile ul {
 .container--spqr {
   background: url(http://res.cloudinary.com/listentoapril/image/upload/v1475305091/april_spqr_vhs_art_bg_h5hwrl.jpg);
   background-size: cover;
-  background-position: 0;
+  background-position: center;
   color: #f0f0f0;
 }
 
