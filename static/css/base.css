@@ -48,6 +48,14 @@ body.mobile ul {
   color: #424242;
 }
 
+.container--spqr {
+  background: url(http://res.cloudinary.com/listentoapril/image/upload/v1475305091/april_spqr_vhs_art_bg_h5hwrl.jpg);
+  background-size: cover;
+  background-position: 0;
+  color: #f0f0f0;
+}
+
+
 .container--exit-music *::selection {
   background: #fff;
   color: #c7c5c8;
@@ -59,8 +67,13 @@ body.mobile ul {
 }
 
 .container--light *::selection {
-  background: #fff; /* WebKit/Blink Browsers */
+  background: #fff;
   color: #d3d0d7;
+}
+
+.container--spqr *::selection {
+  background: #fff;
+  color: #3a3c3f;
 }
 
 .content {
