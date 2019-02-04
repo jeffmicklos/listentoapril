@@ -23,14 +23,25 @@
   </head>
   <body>
     <div class="container">
-      <video
-        id="video"
-        src=""
-        width="480"
-        height="480"
-        autoplay
-        controls
-      ></video>
+      <a
+        href="javascript:;"
+        style="
+    position: absolute;
+    font-family: Helvetica;
+    top: 50%;
+    text-transform: capitalize;
+    text-decoration: none;
+    left: 50%;
+    color: #fff;
+    z-index: 100;
+    font-weight: bold;
+    font-size: 100px;
+    transform: translateY(-50%) translateX(-50%);
+"
+        >Click here to start the party</a
+      >
+
+      <video id="video" src="" width="480" height="480"></video>
     </div>
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/zepto/1.0/zepto.min.js"></script>
@@ -88,6 +99,12 @@
       });
 
       video.attr("src", data[0].video);
+
+      $("a").on("click", function() {
+        fitVideo();
+        video[0].play();
+        $("a").hide();
+      });
     </script>
   </body>
 </html>
