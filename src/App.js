@@ -791,7 +791,7 @@ AUDIO.forEach(
           Your browser does not support the
           <code>audio</code> element.
         </audio>
-        <br />
+
         <Link to={link} className="button">
           {audio.button || sample(BUTTON_TEXTS)}
         </Link>
@@ -1003,7 +1003,7 @@ export default class App extends Component {
           }, Math.random() * Math.random() * 1000);
         }, Math.random() * 500),
       );
-    }, 10000);
+    }, 70000);
 
     setInterval(function () {
       var allImagesToBick = $('img, video');
