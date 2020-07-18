@@ -74,6 +74,26 @@ const QUOTES = [
     path: '/you-ran-the-race',
     button: 'enter in the big white gates',
   },
+  {
+    text: '“like a boy, in a room, trying to catch a ghost”',
+    path: '/thinnest',
+    button: 'reach',
+  },
+  {
+    text: '“without an audience, there is no reason for musicians to exist.”',
+    path: '/no',
+    button: 'but I am here…?',
+  },
+  {
+    text: '“free speech is indeed alive and thriving in this country”',
+    path: '/free-speechh',
+    button: 'uh huh.',
+  },
+  {
+    text: 'it isnt always perfect, but we are trying.',
+    path: '/please-bear-with-us',
+    button: 'I understand',
+  },
 ];
 
 const ODES = [
@@ -217,6 +237,49 @@ const HD_IMAGES = [
     path: '/this-is-enough',
     button: null,
   },
+
+  {
+    id: '/maze/hd/Screen_Shot_2017-08-14_at_1.33.10_AM.png',
+    path: null,
+    button: null,
+  },
+  {
+    id: '/maze/hd/Screen_Shot_2017-08-14_at_1.37.43_AM.png',
+    path: null,
+    button: null,
+  },
+  {
+    id: '/maze/hd/Screen_Shot_2017-08-14_at_1.38.39_AM.png',
+    path: null,
+    button: null,
+  },
+  {
+    id: '/maze/hd/Screen_Shot_2017-07-09_at_12.57.35_AM.png',
+    path: null,
+    button: null,
+  },
+  {
+    id: '/maze/hd/Screen_Shot_2017-07-09_at_12.57.35_AM.png',
+    path: null,
+    button: null,
+  },
+  {
+    id: '/maze/hd/Screen_Shot_2016-07-23_at_10.59.27_PM.png',
+    path: null,
+    button: null,
+  },
+  { id: '/maze/hd/Picture_021-1.jpg', path: null, button: null },
+
+  { id: '/maze/hd/full_3.jpg', path: null, button: null },
+  { id: '/maze/hd/full_6.jpg', path: null, button: null },
+  {
+    id: '/maze/hd/Screen_Shot_2016-01-25_at_8.15.50_PM.png',
+    path: null,
+    button: null,
+  },
+  { id: '/maze/hd/Photo_May_26_12_36_02_PM.jpg', path: null, button: null },
+  { id: '/maze/hd/Photo_Jan_18_3_04_28_PM.jpg', path: null, button: null },
+  { id: '/maze/hd/Photo_Jul_30_9_47_28_PM.jpg', path: null, button: null },
 ];
 
 const FILM_IMAGES = [
@@ -445,6 +508,36 @@ const FILM_IMAGES = [
   { id: '/maze/film/8138_03.jpg', path: null, button: null },
   { id: '/maze/film/8130_07.jpg', path: null, button: null },
   { id: '/maze/film/6868_10.jpg', path: null, button: null },
+  { id: '/maze/film/5990_31.jpg', path: null, button: null },
+  { id: '/maze/film/5988_06.jpg', path: null, button: null },
+  {
+    id: '/maze/film/11707828_1003122089728546_1662221270607128660_o.jpg',
+    path: null,
+    button: null,
+  },
+
+  {
+    id: '/maze/film/Screen_Shot_2017-08-14_at_1.38.39_AM.png',
+    path: null,
+    button: null,
+  },
+  {
+    id: '/maze/film/Screen_Shot_2017-08-14_at_1.37.43_AM.png',
+    path: null,
+    button: null,
+  },
+  {
+    id: '/maze/film/Screen_Shot_2017-08-14_at_1.33.10_AM.png',
+    path: null,
+    button: null,
+  },
+  {
+    id: '/maze/film/Screen_Shot_2017-07-09_at_12.57.35_AM.png',
+    path: null,
+    button: null,
+  },
+  { id: '/maze/film/Capture2.png', path: null, button: null },
+  { id: '/maze/film/Capture.png', path: null, button: null },
 ];
 
 const HD_VIDEOS = [
@@ -568,6 +661,33 @@ const VIDEOS = [
   { id: '/maze/videos/Untitled_Project.mp4', path: null, button: null },
   { id: '/maze/videos/P1070276.mp4', path: null, button: null },
   { id: '/maze/videos/MVI_3105.mp4', path: null, button: null },
+  { id: '/maze/videos/swell_jammin_3.mp4', path: null, button: null },
+  { id: '/maze/videos/lights.mov', path: null, button: null },
+  { id: '/maze/videos/joe_piano_2.mov', path: null, button: null },
+  { id: '/maze/videos/lava.mov', path: null, button: null },
+  { id: '/maze/videos/chris_jeff_focus.mov', path: null, button: null },
+  { id: '/maze/videos/P1070282.mp4', path: null, button: null },
+  { id: '/maze/videos/P1070282.mp4', path: null, button: null },
+  { id: '/maze/videos/My_Movie_2_fade_harder.mp4', path: null, button: null },
+  { id: '/maze/videos/watershed_1_small.mp4', path: null, button: null },
+  { id: '/maze/videos/lights_2.mov', path: null, button: null },
+  { id: '/maze/videos/joe_bass_talk.mov', path: null, button: null },
+  { id: '/maze/videos/MVI_3119.mov', path: null, button: null },
+  { id: '/maze/videos/IMG_7654.mp4', path: null, button: null },
+  { id: '/maze/videos/IMG_8135.mp4', path: null, button: null },
+  { id: '/maze/videos/IMG_5503.mov', path: null, button: null },
+  { id: '/maze/videos/IMG_8991.mp4', path: null, button: null },
+  { id: '/maze/videos/IMG_2684.mov', path: null, button: null },
+  { id: '/maze/videos/IMG_1708.mov', path: null, button: null },
+  { id: '/maze/videos/Video_Jul_28_5_41_24_PM.mov', path: null, button: null },
+  { id: '/maze/videos/IMG_7439.mov', path: null, button: null },
+  { id: '/maze/videos/Video_Nov_21_3_57_26_PM.mov', path: null, button: null },
+  { id: '/maze/videos/Video_Oct_29_2_54_10_PM.mov', path: null, button: null },
+  { id: '/maze/videos/Video_Nov_21_1_06_45_PM.mov', path: null, button: null },
+  { id: '/maze/videos/Video_Oct_29_2_55_33_PM.mov', path: null, button: null },
+  { id: '/maze/videos/clip_2_720_100.mp4', path: null, button: null },
+  { id: '/maze/videos/swell_jammin_3.mp4', path: null, button: null },
+  { id: '/maze/videos/clip_1_720_565_100.mp4', path: null, button: null },
 ];
 
 const AUDIO = [
@@ -737,6 +857,113 @@ const AUDIO = [
     path: null,
     button: null,
     image: '/maze/film/17127248_1862931393980951_6573220680844705792_n.jpg',
+    text: null,
+  },
+
+  {
+    id: '/maze/audiio/Study_in_Amaj_v2.mp3',
+    path: null,
+    button: null,
+    image: null,
+    text: null,
+  },
+  {
+    id: '/maze/audiio/let_it_be_me_live_loop.m4a',
+    path: null,
+    button: null,
+    image: null,
+    text: null,
+  },
+  {
+    id: '/maze/audiio/CP_Song.m4a',
+    path: null,
+    button: null,
+    image: null,
+    text: null,
+  },
+  {
+    id: '/maze/audiio/spy_song_3.mp3',
+    path: null,
+    button: null,
+    image: null,
+    text: null,
+  },
+  {
+    id: '/maze/audiio/holynight_loop.mp3',
+    path: null,
+    button: null,
+    image: null,
+    text: null,
+  },
+  {
+    id: '/maze/audiio/french_cuts_3.wav',
+    path: null,
+    button: null,
+    image: null,
+    text: null,
+  },
+  {
+    id: '/maze/audiio/song_in_e.wav',
+    path: null,
+    button: null,
+    image: null,
+    text: null,
+  },
+  {
+    id: '/maze/audiio/ideas4_ninna.mp3',
+    path: null,
+    button: null,
+    image: null,
+    text: null,
+  },
+  {
+    id: '/maze/audiio/samples_april_2017_2.mp3',
+    path: null,
+    button: null,
+    image: null,
+    text: null,
+  },
+  {
+    id: '/maze/audiio/Joe_s_song.m4a',
+    path: null,
+    button: null,
+    image: null,
+    text: null,
+  },
+  {
+    id: '/maze/audiio/samples_april_2017_2_piano.mp3',
+    path: null,
+    button: null,
+    image: null,
+    text: null,
+  },
+  {
+    id: '/maze/audiio/samples_march_2017_2_apres.mp3',
+    path: null,
+    button: null,
+    image: null,
+    text: null,
+  },
+  {
+    id: '/maze/audiio/Moody5.m4a',
+    path: null,
+    button: null,
+    image: null,
+    text: null,
+  },
+  {
+    id: '/maze/audiio/bucky_hall_3.mp3',
+    path: null,
+    button: null,
+    image: null,
+    text: null,
+  },
+
+  {
+    id: '/maze/audiio/jeff_guitar_2_tuned..._a_little.aiff',
+    path: null,
+    button: null,
+    image: null,
     text: null,
   },
 ];
