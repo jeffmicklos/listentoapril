@@ -109,6 +109,11 @@ const QUOTES = [
     path: '/poetry',
     button: null,
   },
+  {
+    text: '“the object appears as if it was miraculously hatched”',
+    path: '/magic',
+    button: 'tada',
+  },
 ];
 
 const ODES = [
@@ -318,6 +323,13 @@ const HD_IMAGES = [
   { id: '/maze/hd/Photo_May_26_12_36_02_PM.jpg', path: null, button: null },
   { id: '/maze/hd/Photo_Jan_18_3_04_28_PM.jpg', path: null, button: null },
   { id: '/maze/hd/Photo_Jul_30_9_47_28_PM.jpg', path: null, button: null },
+  { id: '/maze/hd/IMG_1329.jpg', path: null, button: null },
+  { id: '/maze/hd/IMG_1324.jpg', path: null, button: null },
+  { id: '/maze/hd/lauren-mascara.jpg', path: null, button: null },
+  { id: '/maze/hd/1500x500.jpg', path: null, button: null },
+  { id: '/maze/hd/chris_eye.gif', path: null, button: null },
+  { id: '/maze/hd/IMG_3245.jpg', path: null, button: null },
+  { id: '/maze/hd/IMG_6993.jpg', path: null, button: null },
 ];
 
 const FILM_IMAGES = [
@@ -576,6 +588,12 @@ const FILM_IMAGES = [
   },
   { id: '/maze/film/Capture2.png', path: null, button: null },
   { id: '/maze/film/Capture.png', path: null, button: null },
+  { id: '/maze/film/brian-organ.jpg', path: null, button: null },
+  { id: '/maze/film/joe-double.jpg', path: null, button: null },
+  { id: '/maze/film/joe-piano-hands.jpg', path: null, button: null },
+  { id: '/maze/film/joe-beef.jpg', path: null, button: null },
+  { id: '/maze/film/joe-sv.jpg', path: null, button: null },
+  { id: '/maze/film/chris-companion.jpg', path: null, button: null },
 ];
 
 const HD_VIDEOS = [
@@ -630,16 +648,27 @@ const HD_VIDEOS = [
   { id: '/maze/videos/butterfly_3.mov', path: null, button: null },
   { id: '/maze/videos/briana_teaser_2.mp4', path: null, button: null },
   { id: '/maze/videos/briana_teaser_3.mp4', path: null, button: null },
-  { id: '/maze/videos/1.mov', ppath: null, button: null },
-  { id: '/maze/videos/drone_vhs_5.mov', ppath: null, button: null },
-  { id: '/maze/videos/2.mov', ppath: null, button: null },
-  { id: '/maze/videos/drone_vhs_6.mov', ppath: null, button: null },
-  { id: '/maze/videos/3.mov', ppath: null, button: null },
-  { id: '/maze/videos/4.mov', ppath: null, button: null },
-  { id: '/maze/videos/drone_vhs_7.mov', ppath: null, button: null },
-  { id: '/maze/videos/lead_1_bw.mov', ppath: null, button: null },
-  { id: '/maze/videos/lead_2_bw.mov', ppath: null, button: null },
-  { id: '/maze/videos/MVI_3105.mov', ppath: null, button: null },
+  { id: '/maze/videos/1.mov', path: null, button: null },
+  { id: '/maze/videos/drone_vhs_5.mov', path: null, button: null },
+  { id: '/maze/videos/2.mov', path: null, button: null },
+  { id: '/maze/videos/drone_vhs_6.mov', path: null, button: null },
+  { id: '/maze/videos/3.mov', path: null, button: null },
+  { id: '/maze/videos/4.mov', path: null, button: null },
+  { id: '/maze/videos/drone_vhs_7.mov', path: null, button: null },
+  { id: '/maze/videos/lead_1_bw.mov', path: null, button: null },
+  { id: '/maze/videos/lead_2_bw.mov', path: null, button: null },
+  { id: '/maze/videos/MVI_3105.mov', path: null, button: null },
+  { id: '/maze/videos/3_h264.mov', path: null, button: null },
+  { id: '/maze/videos/2_h264.mov', path: null, button: null },
+  { id: '/maze/videos/MVI_5046.mov', path: null, button: null },
+  { id: '/maze/videos/MVI_5087.mov', path: null, button: null },
+  { id: '/maze/videos/MVI_5041.mov', path: null, button: null },
+  { id: '/maze/videos/MVI_5066.mov', path: null, button: null },
+  { id: '/maze/videos/MVI_1292.mov', path: null, button: null },
+  { id: '/maze/videos/MVI_5089.mov', path: null, button: null },
+  { id: '/maze/videos/MVI_5923-2.MP4.mov', path: null, button: null },
+  { id: '/maze/videos/DSCF6171.avi', path: null, button: null },
+  { id: '/maze/videos/lc.mov', path: null, button: null },
 ];
 
 const VIDEOS = [
@@ -702,7 +731,7 @@ const VIDEOS = [
   { id: '/maze/videos/swell_jammin_3.mp4', path: null, button: null },
   { id: '/maze/videos/lights.mov', path: null, button: null },
   { id: '/maze/videos/joe_piano_2.mov', path: null, button: null },
-  { id: '/maze/videos/lava.mov', path: null, button: null },
+  //{ id: '/maze/videos/lava.mov', path: null, button: null },
   { id: '/maze/videos/chris_jeff_focus.mov', path: null, button: null },
   { id: '/maze/videos/P1070282.mp4', path: null, button: null },
   { id: '/maze/videos/P1070282.mp4', path: null, button: null },
@@ -725,7 +754,6 @@ const VIDEOS = [
   { id: '/maze/videos/Video_Oct_29_2_55_33_PM.mov', path: null, button: null },
   { id: '/maze/videos/clip_2_720_100.mp4', path: null, button: null },
   { id: '/maze/videos/swell_jammin_3.mp4', path: null, button: null },
-  { id: '/maze/videos/clip_1_720_565_100.mp4', path: null, button: null },
 ];
 
 const AUDIO = [
@@ -923,7 +951,7 @@ const AUDIO = [
     id: '/maze/audiio/spy_song_3.mp3',
     path: null,
     button: null,
-    image: null,
+    image: '/maze/film/P1070190.jpg',
     text: null,
   },
   {
@@ -1191,13 +1219,13 @@ QUOTES.forEach(
   quote =>
     (quote.componentGenerator = link => {
       return (
-        <Fragment>
+        <div className="quote-container">
           <blockquote className="quote">{quote.text}</blockquote>
 
           <Link to={link} className="button">
             {quote.button || sample(BUTTON_TEXTS)}
           </Link>
-        </Fragment>
+        </div>
       );
     }),
 );

@@ -32,10 +32,15 @@ ul {
 }
 
 .quote {
-  font-size: 22px;
-  max-width: 720px;
-  padding: 18%;
-  line-height: 28px;
+  font-size: 3vw;
+    line-height: 1.2em;
+    height: 80vh;
+    text-align: center;
+    width: 50vw;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+        margin: 0 auto 20px;
 }
 
 iframe,
@@ -60,6 +65,12 @@ img {
   display: block;
   margin: 0 auto 20px;
 }
+
+.quote-container {
+  /*height: 80vh;
+  width: 90vw;*/
+}
+
 
 audio {
   /*margin-bottom: 20px;*/
