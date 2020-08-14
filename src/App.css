@@ -207,15 +207,7 @@ audio {
 }
 
 .button {
-  /*background: linear-gradient(
-    to bottom,
-    #ffffff 0%,
-    #f1f1f1 50%,
-    #e1e1e1 51%,
-    #f6f6f6 100%
-  );
-  border-radius: 3px;
-  */
+  cursor: pointer;
   font-family: Lucida Grande, Verdana;
   display: inline-block;
   color: #000;
@@ -223,15 +215,6 @@ audio {
   padding: 3px 9px;
   font-size: 11px;
   border: 1px solid #5e5e5e;
-  /*
-  background: #fff
-    linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 1) 5%,
-      rgba(134, 132, 132, 0.31) 50%,
-      rgba(255, 255, 255, 1) 87%
-    );
-    */
   background: #fff
     linear-gradient(
       180deg,
@@ -246,4 +229,26 @@ audio {
 .button:active {
   box-shadow: 0 0px 6px -1px #1f98ff;
   transform: translateY(1px);
+}
+
+.button:focus {
+  outline: 0;
+}
+
+.witch {
+  position: absolute;
+  letter-spacing: 0.1rem;
+  font-variant: all-small-caps;
+}
+
+.blink-1 {
+  animation: flicker-1 100ms linear infinite both;
+}
+
+.blink-2 {
+  animation: flicker-1 250ms linear infinite both;
+}
+
+.blink-3 {
+  animation: flicker-1 400ms linear infinite both;
 }

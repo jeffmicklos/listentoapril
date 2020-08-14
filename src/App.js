@@ -6,6 +6,7 @@ import sample from 'lodash/sample';
 import without from 'lodash/without';
 import sampleSize from 'lodash/sampleSize';
 import { Cloudinary } from 'cloudinary-core';
+import Witch from './Witch';
 
 import './App.css';
 
@@ -1239,6 +1240,13 @@ const pages = [
   ...HD_VIDEOS,
   ...QUOTES,
   ...AUDIO,
+  {
+    id: 'witch',
+    path: '/witch',
+    componentGenerator: link => {
+      return <Witch link={link} />;
+    },
+  },
 ];
 
 const allPaths = pages.map(
@@ -1362,7 +1370,12 @@ export default class App extends Component {
   render() {
     return (
       <Router>
-        <Switch>{routes}</Switch>
+        <Switch>
+          {routes}
+          <Route exact path="/witch">
+            <Witch />
+          </Route>
+        </Switch>
       </Router>
     );
   }
