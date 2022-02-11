@@ -53,7 +53,7 @@ export default function Wire({ link }) {
           marginBottom: '40px',
         }}
       >
-        Catherine Sinow, <i>Wire Magazine</i>, August 2021
+        Catherine&nbsp;Sinow, <i>Wire&nbsp;Magazine</i>, August&nbsp;2021
       </cite>
 
       <Link to={link} className="button">
