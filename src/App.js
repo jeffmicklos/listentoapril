@@ -7,6 +7,7 @@ import without from 'lodash/without';
 import sampleSize from 'lodash/sampleSize';
 import { Cloudinary } from 'cloudinary-core';
 import Witch from './Witch';
+import Wire from './Wire';
 
 import './App.css';
 
@@ -17,26 +18,22 @@ const cl = new Cloudinary({
 
 const QUOTES = [
   {
-    text:
-      'what’s the most the most ominous thing we could do in this situation?',
+    text: 'what’s the most the most ominous thing we could do in this situation?',
     path: '/shred-everything',
     button: null,
   },
   {
-    text:
-      '“everyone who chooses to stay out of politics should make a mental note of where they would draw the line and feel it necessary to get involved. then ask yourself, is it possible that point already happened, but it happened too slowly to notice.”',
+    text: '“everyone who chooses to stay out of politics should make a mental note of where they would draw the line and feel it necessary to get involved. then ask yourself, is it possible that point already happened, but it happened too slowly to notice.”',
     path: '/spoiler-alert',
     button: 'noted.',
   },
   {
-    text:
-      'strange how this fire won’t go out, no matter how much gasoline we pour on it…',
+    text: 'strange how this fire won’t go out, no matter how much gasoline we pour on it…',
     path: '/perplex',
     button: null,
   },
   {
-    text:
-      'if you vote for a billionaire and are not one yourself, you are a mouse voting for a cat.',
+    text: 'if you vote for a billionaire and are not one yourself, you are a mouse voting for a cat.',
     path: '/run',
     button: null,
   },
@@ -46,32 +43,27 @@ const QUOTES = [
     button: 'I understand.',
   },
   {
-    text:
-      '“Leaving Disneyland open is US viking funeral shit. folks begging to get in so they can die twirling on flaming Teacups, desperate workers in big-head costumes keeling over on Main Street USA, stormtroopers dumping bodies on the tiny train, Masque of Red Death hijinks at Club 33”',
+    text: '“Leaving Disneyland open is US viking funeral shit. folks begging to get in so they can die twirling on flaming Teacups, desperate workers in big-head costumes keeling over on Main Street USA, stormtroopers dumping bodies on the tiny train, Masque of Red Death hijinks at Club 33”',
     path: '/toon-town-usa',
     button: null,
   },
   {
-    text:
-      '“when all humanity is gone, retailer’s mailing lists will continue sending "last chance at THE SALE! extra discount!" messages.”',
+    text: '“when all humanity is gone, retailer’s mailing lists will continue sending "last chance at THE SALE! extra discount!" messages.”',
     path: '/now-more-than-ever',
     button: null,
   },
   {
-    text:
-      '“futures not achieved are only branches of the past: dead branches.”',
+    text: '“futures not achieved are only branches of the past: dead branches.”',
     path: '/invisible-cities',
     button: null,
   },
   {
-    text:
-      'Consumers, he says, “are like roaches–you spray them and spray them and they get immune after a while.”',
+    text: 'Consumers, he says, “are like roaches–you spray them and spray them and they get immune after a while.”',
     path: '/herd-immunity',
     button: null,
   },
   {
-    text:
-      '…and the bells will clang as the angels sing “welcome to the city of saints”',
+    text: '…and the bells will clang as the angels sing “welcome to the city of saints”',
     path: '/you-ran-the-race',
     button: 'enter in the big white gates',
   },
@@ -198,7 +190,7 @@ const YOUTUBES = [
   { id: 'vXtF9wg9Q1k', path: '/a-new-chance', button: null }, // gilmour french
   { id: 'Q1qMEPYv_P0', path: '/give-and-get', button: 'get through' },
   { id: 'LaZJeVJ8CwU', path: '/through-the-wired', button: null }, // matrix
-  { id: 'WnuyXsS902k', path: '/get-it', button: null }, // fisheye
+  //{ id: 'WnuyXsS902k', path: '/get-it', button: null }, // fisheye
   { id: '9Y-0nWVdBH4', path: '/coffee-lights-city-3', button: null }, //dont-worry-baby
   { id: 'gFm46jfLm94', path: '/syndicate', button: null },
   { id: 'ZWWM-_Ff2Po', path: '/youth-brigade', button: null }, // aliens
@@ -462,8 +454,7 @@ const FILM_IMAGES = [
   { id: '/maze/film/DSCF0980.jpg', path: null, button: null },
   { id: '/maze/film/carrie-fisher-empire-parka.jpg', path: null, button: null },
   {
-    id:
-      '/maze/film/Agregation_of_neutrophils_around_spontaneously_activated_netosis_observed_in_Alzheimers__Desease_patients_blood.jpg',
+    id: '/maze/film/Agregation_of_neutrophils_around_spontaneously_activated_netosis_observed_in_Alzheimers__Desease_patients_blood.jpg',
     path: null,
     button: null,
   },
@@ -1062,8 +1053,8 @@ const BUTTON_TEXTS = [
 ];
 
 AUDIO.forEach(
-  audio =>
-    (audio.componentGenerator = link => (
+  (audio) =>
+    (audio.componentGenerator = (link) => (
       <div>
         <img
           src={cl.url(audio.image || sample(FILM_IMAGES).id, {
@@ -1078,10 +1069,9 @@ AUDIO.forEach(
           controls
           autoPlay
           loop
-          src={`https://res.cloudinary.com/listentoapril/video/upload${audio.id.substr(
-            0,
-            audio.id.lastIndexOf('.'),
-          ) + '.mp3'}`}
+          src={`https://res.cloudinary.com/listentoapril/video/upload${
+            audio.id.substr(0, audio.id.lastIndexOf('.')) + '.mp3'
+          }`}
         >
           Your browser does not support the
           <code>audio</code> element.
@@ -1095,8 +1085,8 @@ AUDIO.forEach(
 );
 
 YOUTUBES.forEach(
-  youtube =>
-    (youtube.componentGenerator = link => (
+  (youtube) =>
+    (youtube.componentGenerator = (link) => (
       <div>
         <iframe
           title={youtube.id}
@@ -1115,8 +1105,8 @@ YOUTUBES.forEach(
 );
 
 HD_IMAGES.forEach(
-  image =>
-    (image.componentGenerator = link => (
+  (image) =>
+    (image.componentGenerator = (link) => (
       <div>
         <img
           src={cl.url(image.id, {
@@ -1135,8 +1125,8 @@ HD_IMAGES.forEach(
 );
 
 FILM_IMAGES.forEach(
-  image =>
-    (image.componentGenerator = link => (
+  (image) =>
+    (image.componentGenerator = (link) => (
       <div>
         <img
           src={cl.url(image.id, {
@@ -1155,8 +1145,8 @@ FILM_IMAGES.forEach(
 );
 
 VIDEOS.forEach(
-  video =>
-    (video.componentGenerator = link => (
+  (video) =>
+    (video.componentGenerator = (link) => (
       <div>
         <video
           autoPlay
@@ -1178,8 +1168,8 @@ VIDEOS.forEach(
 );
 
 HD_VIDEOS.forEach(
-  video =>
-    (video.componentGenerator = link => (
+  (video) =>
+    (video.componentGenerator = (link) => (
       <div>
         <video
           autoPlay
@@ -1201,8 +1191,8 @@ HD_VIDEOS.forEach(
 );
 
 ODES.forEach(
-  ode =>
-    (ode.componentGenerator = link => {
+  (ode) =>
+    (ode.componentGenerator = (link) => {
       const links = [link, ...sampleSize(allPaths, ode.items.length - 1)];
       return (
         <ul className="ode">
@@ -1217,8 +1207,8 @@ ODES.forEach(
 );
 
 QUOTES.forEach(
-  quote =>
-    (quote.componentGenerator = link => {
+  (quote) =>
+    (quote.componentGenerator = (link) => {
       return (
         <div className="quote-container">
           <blockquote className="quote">{quote.text}</blockquote>
@@ -1243,26 +1233,28 @@ const pages = [
   {
     id: 'witch',
     path: '/witch',
-    componentGenerator: link => {
+    componentGenerator: (link) => {
       return <Witch link={link} />;
+    },
+  },
+  {
+    id: 'wire',
+    path: '/wire',
+    componentGenerator: (link) => {
+      return <Wire link={link} />;
     },
   },
 ];
 
 const allPaths = pages.map(
-  page =>
-    page.path ||
-    page.id
-      .split('/')
-      .pop()
-      .split('.')[0],
+  (page) => page.path || page.id.split('/').pop().split('.')[0],
 );
 
 console.log(allPaths.length);
 
 const possibleLinks = shuffle(allPaths);
 
-const routes = pages.map(page => {
+const routes = pages.map((page) => {
   const link = without(possibleLinks, page.path)[0];
 
   possibleLinks.splice(possibleLinks.indexOf(link), 1);
@@ -1270,14 +1262,7 @@ const routes = pages.map(page => {
   return (
     <Route
       exact
-      path={
-        page.path ||
-        '/' +
-          page.id
-            .split('/')
-            .pop()
-            .split('.')[0]
-      }
+      path={page.path || '/' + page.id.split('/').pop().split('.')[0]}
     >
       {page.componentGenerator(link)}
     </Route>
@@ -1287,8 +1272,8 @@ const routes = pages.map(page => {
 export default class App extends Component {
   componentDidMount() {
     const allImages = [...FILM_IMAGES, ...HD_IMAGES];
-    setInterval(function() {
-      const images = sampleSize(allImages, 5).map(image =>
+    setInterval(function () {
+      const images = sampleSize(allImages, 5).map((image) =>
         //cl.url(image.id, { quality: 40, fetchFormat: 'auto', width: 300 }),
         cl.url(image.id, {
           fetchFormat: 'auto',
@@ -1299,8 +1284,8 @@ export default class App extends Component {
         }),
       );
 
-      images.map(url =>
-        setTimeout(function() {
+      images.map((url) =>
+        setTimeout(function () {
           const img = document.createElement('img');
           $(img).css({
             position: 'absolute',
@@ -1319,7 +1304,7 @@ export default class App extends Component {
       );
     }, 70000);
 
-    setInterval(function() {
+    setInterval(function () {
       var allImagesToBick = $('img, video');
       var imageToBick = allImagesToBick.eq(
         Math.floor(Math.random() * allImagesToBick.length),
@@ -1327,15 +1312,14 @@ export default class App extends Component {
       var flipCount = 0;
       console.log('in interval', imageToBick);
 
-      var flipInterval = setInterval(function() {
+      var flipInterval = setInterval(function () {
         if (flipCount >= 10) {
           imageToBick.css({ filter: '', opacity: 1 });
           clearInterval(flipInterval);
         } else {
-          var filter = `saturate(${Math.random().toFixed(2) *
-            Math.random() *
-            Math.random() *
-            10}) opacity(${Math.random().toFixed(2)})`;
+          var filter = `saturate(${
+            Math.random().toFixed(2) * Math.random() * Math.random() * 10
+          }) opacity(${Math.random().toFixed(2)})`;
 
           imageToBick.css({
             filter: filter,
@@ -1346,14 +1330,14 @@ export default class App extends Component {
       }, 42);
     }, 50000);
 
-    setInterval(function() {
+    setInterval(function () {
       var allImagesToBick = $('img, video');
       var imageToBick = allImagesToBick.eq(
         Math.floor(Math.random() * allImagesToBick.length),
       );
       var flipCount = 0;
 
-      var flipInterval = setInterval(function() {
+      var flipInterval = setInterval(function () {
         if (flipCount >= 5) {
           imageToBick.css({ opacity: 1 });
           clearInterval(flipInterval);

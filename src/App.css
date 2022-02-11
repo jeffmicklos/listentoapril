@@ -33,14 +33,14 @@ ul {
 
 .quote {
   font-size: 3vw;
-    line-height: 1.2em;
-    height: 80vh;
-    text-align: center;
-    width: 50vw;
-    justify-content: center;
-    display: flex;
-    align-items: center;
-        margin: 0 auto 20px;
+  line-height: 1.2em;
+  height: 80vh;
+  text-align: center;
+  width: 50vw;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  margin: 0 auto 20px;
 }
 
 iframe,
@@ -71,6 +71,31 @@ img {
   width: 90vw;*/
 }
 
+.article-container {
+  width: 585px;
+  line-height: 1.5rem;
+  font-size: 16px;
+}
+
+@media only screen and (max-width: 600px) {
+  .article-container {
+    width: 100%;
+    padding: 20px 40px;
+    top: 0;
+    overflow: scroll;
+    box-sizing: border-box;
+    position: absolute;
+    left: 0;
+  }
+
+  .article-container a {
+    margin-bottom: 40px;
+  }
+}
+
+.article-container p {
+  text-align: left;
+}
 
 audio {
   /*margin-bottom: 20px;*/
