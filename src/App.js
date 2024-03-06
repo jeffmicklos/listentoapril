@@ -8,6 +8,9 @@ import sampleSize from 'lodash/sampleSize';
 import { Cloudinary } from 'cloudinary-core';
 import Witch from './Witch';
 import Wire from './Wire';
+import Shop from './Shop';
+import Text from './Text';
+import Odes from './Odes';
 
 import './App.css';
 
@@ -42,11 +45,11 @@ const QUOTES = [
     path: '/ignorance-is-collaboration',
     button: 'I understand.',
   },
-  {
+  /*{
     text: '“Leaving Disneyland open is US viking funeral shit. folks begging to get in so they can die twirling on flaming Teacups, desperate workers in big-head costumes keeling over on Main Street USA, stormtroopers dumping bodies on the tiny train, Masque of Red Death hijinks at Club 33”',
     path: '/toon-town-usa',
     button: null,
-  },
+  },*/
   {
     text: '“when all humanity is gone, retailer’s mailing lists will continue sending "last chance at THE SALE! extra discount!" messages.”',
     path: '/now-more-than-ever',
@@ -77,11 +80,11 @@ const QUOTES = [
     path: '/no',
     button: 'but I am here…?',
   },
-  {
+  /*{
     text: '“free speech is indeed alive and thriving in this country”',
     path: '/free-speechh',
     button: 'uh huh.',
-  },
+  },*/
   {
     text: 'it isnt always perfect, but we are trying.',
     path: '/please-bear-with-us',
@@ -1026,10 +1029,6 @@ const AUDIO = [
   },
 ];
 
-/*const PATHS = [
-  //"/milliseconds",
-];*/
-
 const BUTTON_TEXTS = [
   'yes yes, okay.',
   'everybody hates a tourist',
@@ -1244,13 +1243,18 @@ const pages = [
       return <Wire link={link} />;
     },
   },
+  {
+    id: 'text',
+    path: '/text',
+    componentGenerator: (link) => {
+      return <Text link={link} />;
+    },
+  },
 ];
 
 const allPaths = pages.map(
   (page) => page.path || page.id.split('/').pop().split('.')[0],
 );
-
-console.log(allPaths.length);
 
 const possibleLinks = shuffle(allPaths);
 
@@ -1264,7 +1268,7 @@ const routes = pages.map((page) => {
       exact
       path={page.path || '/' + page.id.split('/').pop().split('.')[0]}
     >
-      {page.componentGenerator(link)}
+      <Fragment>{page.componentGenerator(link)}</Fragment>
     </Route>
   );
 });
@@ -1358,6 +1362,12 @@ export default class App extends Component {
           {routes}
           <Route exact path="/witch">
             <Witch />
+          </Route>
+          <Route exact path="/shop">
+            <Shop />
+          </Route>
+          <Route exact path="/odes">
+            <Odes />
           </Route>
         </Switch>
       </Router>
