@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/listentoapril/static/css/main.f4f2d3f4.css",
-    "main.js": "/listentoapril/static/js/main.e14dcaf8.js",
+    "main.js": "/listentoapril/static/js/main.d0405401.js",
     "static/media/Caslon.otf": "/listentoapril/static/media/Caslon.57426bada37e09b5d62b.otf",
     "index.html": "/listentoapril/index.html",
     "main.f4f2d3f4.css.map": "/listentoapril/static/css/main.f4f2d3f4.css.map",
-    "main.e14dcaf8.js.map": "/listentoapril/static/js/main.e14dcaf8.js.map"
+    "main.d0405401.js.map": "/listentoapril/static/js/main.d0405401.js.map"
   },
   "entrypoints": [
     "static/css/main.f4f2d3f4.css",
-    "static/js/main.e14dcaf8.js"
+    "static/js/main.d0405401.js"
   ]
 }
