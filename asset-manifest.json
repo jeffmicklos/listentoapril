@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/listentoapril/static/css/main.f4f2d3f4.css",
-    "main.js": "/listentoapril/static/js/main.d0405401.js",
-    "static/media/Caslon.otf": "/listentoapril/static/media/Caslon.57426bada37e09b5d62b.otf",
-    "index.html": "/listentoapril/index.html",
-    "main.f4f2d3f4.css.map": "/listentoapril/static/css/main.f4f2d3f4.css.map",
-    "main.d0405401.js.map": "/listentoapril/static/js/main.d0405401.js.map"
+    "main.css": "/static/css/main.bbd63a6c.css",
+    "main.js": "/static/js/main.d6e483cf.js",
+    "static/media/Caslon.otf": "/static/media/Caslon.57426bada37e09b5d62b.otf",
+    "index.html": "/index.html",
+    "main.bbd63a6c.css.map": "/static/css/main.bbd63a6c.css.map",
+    "main.d6e483cf.js.map": "/static/js/main.d6e483cf.js.map"
   },
   "entrypoints": [
-    "static/css/main.f4f2d3f4.css",
-    "static/js/main.d0405401.js"
+    "static/css/main.bbd63a6c.css",
+    "static/js/main.d6e483cf.js"
   ]
 }
