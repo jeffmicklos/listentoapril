@@ -30,62 +30,202 @@ const ODES = [
   'Hotel St. James',
   'Gelato Vero',
   //'Le Stats',
-  //'Korova',
+  'Korova',
   'Cosmos',
   'Bertos',
   'The Salk Institute',
   'Tourmaline',
-  'Tribute',
+  //'Tribute',
   '3034 Dwight St.',
   'Bassams (Market St.)',
   'Room 3327',
   'Sodium Vapor',
   'Cottonwood',
   'Escapement',
+  '1825',
+  'Haven Bakery',
+  'Punk Rock Dennys',
+  'The Che',
+  'Check Points',
+  'Big Sonic Chill',
+  'Lost Companions Intl.',
+  'View Point (Lookout)',
+  'Ray (At Night)',
+  'Dec. 3rd, 2005',
 ];
 
-const init = sampleSize(ODES, 4);
+const init = [
+  'Sodium Vapor',
+  'The Old Krikorian',
+  'Hotel St. James',
+  'Tourmaline',
+];
+
+/*
+GOOD:
+
+Sodium Vapor
+Escapement
+Bassams (Market St.)
+Cottonwood
+
+Hotel St. James
+Cosmos
+Proctor Valley Rd.
+The Scene
+
+Hotel St. James
+Cosmos
+Bassams (Market St.)
+The Scene
+
+Cosoms
+Hotel St. James
+Bassams (Market St.)
+The Scene
+*/
+
+/*
+BAD:
+Gelato Vero
+Room 3327
+The Scene
+Cosmos
+
+Hotel St. James
+Cosmos
+Gelato Vero
+The Scene
+
+Cosmos
+Escapement
+Room 3327
+Harbinson Canyon
+
+Cosmos
+Bertos
+Hotel St. James
+Harbinson Canyon
+
+Sodium Vapor
+Tourmaline
+Bertos
+The Old Krikorian
+
+The Salk Institute
+3034 Dwight St.
+Hotel St. James
+Escapement
+
+Cosmos
+The Old Krikorian
+Cottonwood
+Tourmaline
+
+3034 Dwight St.
+Tourmaline
+Room 3327
+Escapement
+
+Sodium Vapor
+Room 3327
+The Scene
+Tourmaline
+
+3034 Dwight St.
+Hotel St. James
+Escapement
+Tourmaline
+*/
+
+const getLine = (i, lines) => {
+  let candidate;
+  const candidates = without(ODES, ...lines);
+
+  const longest = lines.reduce(
+    (memo, current) => Math.max(memo, current.length),
+    0,
+  );
+
+  const shortest = lines.reduce(
+    (memo, current) => Math.min(memo, current.length),
+    Infinity,
+  );
+
+  const aboveLength = lines[i - 1]?.length;
+  const belowLength = lines[i + 1]?.length;
+
+  if (aboveLength && belowLength) {
+  }
+
+  if (i == 0) {
+    // top line should never be the longest
+
+    candidate = sample(
+      candidates.filter((candidate) => candidate.length < longest),
+    );
+
+    console.log(
+      'top line, shorter than',
+      longest,
+      candidate,
+      candidates.filter((candidate) => candidate.length < longest),
+      candidates,
+    );
+  } else if (i === 3) {
+    // bottom line should never be the shortest
+    let first = candidates.filter((candidate) => candidate.length > shortest);
+
+    candidate = sample(first);
+
+    if (
+      candidate?.length <= lines[2].length &&
+      candidate?.length <= lines[1].length
+    ) {
+      candidate =
+        sample(
+          first.filter(
+            (candidate) =>
+              candidate.length > lines[2].length &&
+              candidate.length > lines[1].length,
+          ),
+        ) || first;
+    }
+  }
+
+  return candidate || sample(candidates);
+};
 
 export default function Odes() {
-  console.log('redndering');
   const [odes, setOdes] = useState(init);
   const [willWipe, setWillWipe] = useState(false);
   const [indexToReplace, setIndexToReplace] = useState(null);
 
   useEffect(() => {
     let duration = random(1000, 8000);
-    if (willWipe) {
-      duration = 10000;
-    }
 
     if (odes[0] === 'April') {
       duration = 10000;
     }
 
-    if (willWipe) {
-      setTimeout(() => {
-        setOdes(['April', 'San Diego', 'California', 'This is the New Trance']);
-        setWillWipe(false);
-      }, 10000);
+    if (random(0, 5) === 3 && odes[0] !== 'April') {
+      setWillWipe(true);
       return;
     }
 
     setTimeout(() => {
       let current = [...odes];
-      const next = sample(without(ODES, ...current));
+      //const next = sample(without(ODES, ...current));
       const i = random(0, 3);
 
+      const next = getLine(i, current);
+
       if (current[0] === 'April') {
-        current = sampleSize(ODES, 4);
+        const thing = sampleSize(ODES, 4);
+        current = thing;
       } else {
         current[i] = next;
-      }
-
-      setIndexToReplace(i);
-
-      if (random(0, 5) === 3) {
-        setWillWipe(true);
-        return;
+        setIndexToReplace(i);
       }
 
       setTimeout(() => {
@@ -93,7 +233,22 @@ export default function Odes() {
         setIndexToReplace(null);
       }, random(200, 800));
     }, duration);
-  }, [odes, willWipe]);
+  }, [odes]);
+
+  useEffect(() => {
+    if (willWipe) {
+      setTimeout(() => {
+        setOdes([
+          'April',
+          'San Diego, Ca',
+          'Constant Escapement',
+          'This is the New Trance',
+        ]);
+        setWillWipe(false);
+      }, 10000);
+      return;
+    }
+  }, [willWipe]);
 
   return (
     <ul className="ode">
@@ -105,7 +260,7 @@ export default function Odes() {
         }
 
         if (odes[0] === 'April') {
-          duration = random(300, 1000);
+          duration = random(300, 700);
         }
 
         return (
@@ -117,6 +272,8 @@ export default function Odes() {
             })}
             style={{
               animationDuration: `${duration}ms`,
+              animationDelay:
+                willWipe && odes[0] !== 'April' ? `${random(0, 4000)}ms` : 0,
             }}
           >
             {ode}

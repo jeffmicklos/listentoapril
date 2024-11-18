@@ -1196,7 +1196,7 @@ ODES.forEach(
       return (
         <ul className="ode">
           {ode.items.map((item, index) => (
-            <li>
+            <li key={item}>
               <Link to={links[index]}>{item}</Link>
             </li>
           ))}
@@ -1314,7 +1314,6 @@ export default class App extends Component {
         Math.floor(Math.random() * allImagesToBick.length),
       );
       var flipCount = 0;
-      console.log('in interval', imageToBick);
 
       var flipInterval = setInterval(function () {
         if (flipCount >= 10) {

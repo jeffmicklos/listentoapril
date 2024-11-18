@@ -109,15 +109,24 @@ audio {
 
 @keyframes flicker-2 {
   0% {
-    opacity: 0;
-  }
-  10% {
     opacity: 1;
   }
-  20% {
+  10% {
     opacity: 0;
   }
+  20% {
+    opacity: 1;
+  }
   25% {
+    opacity: 0;
+  }
+  32.98% {
+    opacity: 1;
+  }
+  48% {
+    opacity: 0;
+  }
+  66% {
     opacity: 1;
   }
   100% {
